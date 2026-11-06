@@ -112,5 +112,6 @@ export interface Dict {
       items: { q: string; a: string }[];
     };
     closing: { title: string };
+    osNames: { windows: string; macos: string; linux: string };
   };
 }

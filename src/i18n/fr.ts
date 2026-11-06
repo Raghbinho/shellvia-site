@@ -170,5 +170,6 @@ export const fr: Dict = {
       ],
     },
     closing: { title: "Connectez-vous." },
+    osNames: { windows: "Windows", macos: "macOS", linux: "Linux" },
   },
 };

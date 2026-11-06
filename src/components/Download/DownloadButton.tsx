@@ -8,12 +8,6 @@ import styles from "./Download.module.css";
 import { useReleaseLinks } from "./useReleaseLinks";
 import { usePlatform } from "./usePlatform";
 
-export const OS_NAMES: Record<Os, string> = {
-  windows: "Windows",
-  macos: "macOS",
-  linux: "Linux",
-};
-
 interface Props {
   lang: Lang;
   links: ReleaseLinks;
@@ -27,7 +21,7 @@ export function DownloadButton({ lang, links, variant, os }: Props) {
   const platform = usePlatform();
   const target = variant === "card" && os ? os : platform.os;
   const t = getDict(lang);
-  const label = t.hero.download.replace("{os}", OS_NAMES[target]);
+  const label = t.hero.download.replace("{os}", t.home.osNames[target]);
   const isCard = variant === "card";
   const primary = !isCard || (target === platform.os && platform.detected);
   return (

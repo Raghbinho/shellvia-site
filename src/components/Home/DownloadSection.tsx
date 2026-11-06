@@ -1,7 +1,7 @@
 "use client";
 
 import { getDict, type Lang } from "@/i18n";
-import { DownloadButton, OS_NAMES } from "@/components/Download/DownloadButton";
+import { DownloadButton } from "@/components/Download/DownloadButton";
 import { usePlatform } from "@/components/Download/usePlatform";
 import { useReleaseLinks } from "@/components/Download/useReleaseLinks";
 import { isShown, type Format, type ReleaseLinks } from "@/lib/releases";
@@ -24,7 +24,8 @@ const EXTENSIONS: Record<Format, string> = {
 };
 
 export function DownloadSection({ lang, links }: { lang: Lang; links: ReleaseLinks }) {
-  const t = getDict(lang).home.download;
+  const home = getDict(lang).home;
+  const t = home.download;
   const live = useReleaseLinks(links);
   const platform = usePlatform();
   const requirements: Record<Os, string> = {
@@ -44,7 +45,7 @@ export function DownloadSection({ lang, links }: { lang: Lang; links: ReleaseLin
           const current = platform.detected && platform.os === os;
           return (
             <div key={os} className={`${styles.os} ${current ? styles.oscur : ""}`}>
-              <span className={styles.osn}>{OS_NAMES[os]}</span>
+              <span className={styles.osn}>{home.osNames[os]}</span>
               <span className={styles.osf}>{[...shown, requirements[os]].join(" · ")}</span>
               <DownloadButton lang={lang} links={links} variant="card" os={os} />
             </div>
