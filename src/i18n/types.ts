@@ -96,4 +96,21 @@ export interface Dict {
     vault: { title: string; text: string; name: string; encrypted: string };
     also: { title: string; chips: string[] };
   };
+  home: {
+    title: string;
+    download: {
+      title: string;
+      titleEm: string;
+      sub: string;
+      button: string;
+      windowsReq: string;
+      macosReq: string;
+      linuxReq: string;
+    };
+    faq: {
+      title: string;
+      items: { q: string; a: string }[];
+    };
+    closing: { title: string };
+  };
 }

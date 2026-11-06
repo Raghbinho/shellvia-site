@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 for (const path of ["/", "/fr/"]) {
   test(`${path} hero title fits at 360px`, async ({ page }) => {

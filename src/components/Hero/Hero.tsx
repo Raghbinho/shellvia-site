@@ -1,17 +1,9 @@
-import { Download } from "lucide-react";
+import type { ReactNode } from "react";
 import { getDict, type Lang } from "@/i18n";
 import { AppWindow } from "../AppWindow/AppWindow";
 import styles from "./Hero.module.css";
 
-export function Hero({
-  lang,
-  downloadHref,
-  downloadOs,
-}: {
-  lang: Lang;
-  downloadHref: string;
-  downloadOs: string;
-}) {
+export function Hero({ lang, cta }: { lang: Lang; cta: ReactNode }) {
   const t = getDict(lang).hero;
   return (
     <section className={styles.hero}>
@@ -28,10 +20,7 @@ export function Hero({
         {t.leadRest}
       </p>
       <div className={styles.ctas}>
-        <a className={`${styles.btn} ${styles.pri}`} href={downloadHref}>
-          <Download size="1.1em" aria-hidden="true" />
-          {t.download.replace("{os}", downloadOs)}
-        </a>
+        {cta}
         <a className={`${styles.btn} ${styles.glass}`} href="#features">
           {t.features}
         </a>

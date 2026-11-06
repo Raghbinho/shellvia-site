@@ -9,5 +9,6 @@ export default defineConfig({
     url: "http://localhost:4321",
     reuseExistingServer: false,
     timeout: 180_000,
+    env: { SHELLVIA_RELEASES_FIXTURE: "src/lib/fixtures/release.json" },
   },
 });

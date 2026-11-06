@@ -136,4 +136,39 @@ export const fr: Dict = {
       ],
     },
   },
+  home: {
+    title: "Shellvia — client SSH, SFTP et terminal",
+    download: {
+      title: "Gratuit.",
+      titleEm: "Sans compte.",
+      sub: "Téléchargez, installez, connectez-vous. Les mises à jour suivent automatiquement.",
+      button: "Télécharger",
+      windowsReq: "Windows 10/11",
+      macosReq: "universel, macOS 11+",
+      linuxReq: "toute distribution",
+    },
+    faq: {
+      title: "Questions.",
+      items: [
+        { q: "Est-ce gratuit ?", a: "Oui. Shellvia est gratuit et ne demande aucun compte." },
+        {
+          q: "Où sont stockés mes mots de passe ?",
+          a: "Dans un coffre chiffré sur votre ordinateur. Rien n'est envoyé ailleurs.",
+        },
+        {
+          q: "Windows ou macOS affiche un avertissement à l'installation.",
+          a: "Shellvia n'est pas encore signé : votre système demande donc une confirmation. La page Télécharger détaille les étapes.",
+        },
+        {
+          q: "Puis-je reprendre ma configuration OpenSSH ?",
+          a: "Oui. Shellvia importe vos fichiers ~/.ssh/config et known_hosts.",
+        },
+        {
+          q: "Comment se font les mises à jour ?",
+          a: "Elles sont automatiques et signées, et ne s'installent qu'avec votre accord.",
+        },
+      ],
+    },
+    closing: { title: "Connectez-vous." },
+  },
 };

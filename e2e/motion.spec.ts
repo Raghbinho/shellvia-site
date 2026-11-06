@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 test("the typed command is animating by default", async ({ page }) => {
   await page.goto("/");
