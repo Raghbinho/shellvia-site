@@ -172,4 +172,67 @@ export const en: Dict = {
     closing: { title: "Connect." },
     osNames: { windows: "Windows", macos: "macOS", linux: "Linux" },
   },
+  download: {
+    metaTitle: "Download Shellvia for Windows, macOS and Linux",
+    title: "Download",
+    titleEm: "Shellvia",
+    lead: "Free and no account. Updates then install on their own, signed and with your approval.",
+    yourSystem: "Your system: {os}",
+    chooseSystem: "Choose your system",
+    productFor: "Shellvia for {os}",
+    version: "Version {version}",
+    button: "Download",
+    altPrompt: "Not the right system?",
+    altLink: "See all systems",
+    releaseNotes: "Release notes",
+    meta: {
+      windows: "Installer .exe · Windows 10 and 11, 64-bit",
+      macos: "Disk image .dmg · macOS 11 or later, Intel and Apple Silicon",
+      linux: "Portable .AppImage · x86_64",
+    },
+    allTitle: "All systems",
+    detectedTag: "detected",
+    requirements: {
+      windows: "Windows 10 and 11 · 64-bit",
+      macos: "macOS 11 or later · Intel and Apple Silicon",
+      linux: "x86_64",
+    },
+    formatNotes: {
+      exe: "Recommended · automatic updates",
+      msi: "For managed deployments",
+      dmg: "Universal · automatic updates",
+      appimage: "Any distribution · automatic updates",
+      deb: "Debian, Ubuntu",
+      rpm: "Fedora",
+    },
+    downloadFile: "Download the {format}",
+    firstTitle: "First launch",
+    steps: {
+      windows: [
+        "Run the **.exe**.",
+        "If SmartScreen shows “Windows protected your PC”, click **More info** then **Run anyway**.",
+        "If needed, the installer adds the WebView2 component.",
+      ],
+      macos: [
+        "Open the **.dmg** and drag Shellvia into Applications.",
+        "On first launch: **right-click Shellvia, then Open**.",
+        "If macOS still refuses:",
+      ],
+      linux: [
+        "AppImage: make it executable, then run it.",
+        ".deb or .rpm: install it with your package manager.",
+      ],
+    },
+    notSigned:
+      "Shellvia is not yet signed with a developer certificate: these warnings are expected.",
+    allReleases: "All releases on GitHub",
+    why: [
+      {
+        title: "Automatic updates",
+        text: "Signed, offered in the app, installed with your approval.",
+      },
+      { title: "No account", text: "Nothing to create: you install, you connect." },
+      { title: "Your secrets stay with you", text: "Credentials encrypted on your machine." },
+    ],
+  },
 };

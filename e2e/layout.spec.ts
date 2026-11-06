@@ -1,7 +1,7 @@
 import { expect, test } from "./fixtures";
 
-for (const path of ["/", "/fr/"]) {
-  test(`${path} hero title fits at 360px`, async ({ page }) => {
+for (const path of ["/", "/fr/", "/download/", "/fr/telecharger/"]) {
+  test(`${path} main title fits at 360px`, async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto(path);
     const m = await page.locator("main h1").evaluate((el) => ({

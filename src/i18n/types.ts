@@ -114,4 +114,29 @@ export interface Dict {
     closing: { title: string };
     osNames: { windows: string; macos: string; linux: string };
   };
+  download: {
+    metaTitle: string;
+    title: string;
+    titleEm: string;
+    lead: string;
+    yourSystem: string;
+    chooseSystem: string;
+    productFor: string;
+    version: string;
+    button: string;
+    altPrompt: string;
+    altLink: string;
+    releaseNotes: string;
+    meta: Record<"windows" | "macos" | "linux", string>;
+    allTitle: string;
+    detectedTag: string;
+    requirements: Record<"windows" | "macos" | "linux", string>;
+    formatNotes: Record<"exe" | "msi" | "dmg" | "appimage" | "deb" | "rpm", string>;
+    downloadFile: string;
+    firstTitle: string;
+    steps: Record<"windows" | "macos" | "linux", string[]>;
+    notSigned: string;
+    allReleases: string;
+    why: Array<{ title: string; text: string }>;
+  };
 }

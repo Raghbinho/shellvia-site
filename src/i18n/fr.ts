@@ -172,4 +172,67 @@ export const fr: Dict = {
     closing: { title: "Connectez-vous." },
     osNames: { windows: "Windows", macos: "macOS", linux: "Linux" },
   },
+  download: {
+    metaTitle: "Télécharger Shellvia pour Windows, macOS et Linux",
+    title: "Télécharger",
+    titleEm: "Shellvia",
+    lead: "Gratuit et sans compte. Les mises à jour s'installent ensuite toutes seules, signées et avec votre accord.",
+    yourSystem: "Votre système : {os}",
+    chooseSystem: "Choisissez votre système",
+    productFor: "Shellvia pour {os}",
+    version: "Version {version}",
+    button: "Télécharger",
+    altPrompt: "Pas le bon système ?",
+    altLink: "Voir tous les systèmes",
+    releaseNotes: "Notes de version",
+    meta: {
+      windows: "Installeur .exe · Windows 10 et 11, 64 bits",
+      macos: "Image disque .dmg · macOS 11 ou plus, Intel et Apple Silicon",
+      linux: "Portable .AppImage · x86_64",
+    },
+    allTitle: "Tous les systèmes",
+    detectedTag: "détecté",
+    requirements: {
+      windows: "Windows 10 et 11 · 64 bits",
+      macos: "macOS 11 ou plus · Intel et Apple Silicon",
+      linux: "x86_64",
+    },
+    formatNotes: {
+      exe: "Recommandé · mise à jour automatique",
+      msi: "Pour les déploiements gérés",
+      dmg: "Universel · mise à jour automatique",
+      appimage: "Toutes distributions · mise à jour automatique",
+      deb: "Debian, Ubuntu",
+      rpm: "Fedora",
+    },
+    downloadFile: "Télécharger le {format}",
+    firstTitle: "Premier lancement",
+    steps: {
+      windows: [
+        "Lancez le **.exe**.",
+        "Si SmartScreen affiche « Windows a protégé votre PC », cliquez sur **Informations complémentaires** puis **Exécuter quand même**.",
+        "Au besoin, l'installeur ajoute le composant WebView2.",
+      ],
+      macos: [
+        "Ouvrez le **.dmg** et glissez Shellvia dans Applications.",
+        "Au premier lancement : **clic droit sur Shellvia, puis Ouvrir**.",
+        "Si macOS refuse encore :",
+      ],
+      linux: [
+        "AppImage : rendez-la exécutable puis lancez-la.",
+        ".deb ou .rpm : installez-le avec le gestionnaire de paquets.",
+      ],
+    },
+    notSigned:
+      "Shellvia n'est pas encore signé par un certificat de développeur : ces avertissements sont attendus.",
+    allReleases: "Toutes les versions sur GitHub",
+    why: [
+      {
+        title: "Mises à jour automatiques",
+        text: "Signées, proposées dans l'app, installées avec votre accord.",
+      },
+      { title: "Aucun compte", text: "Rien à créer : vous installez, vous vous connectez." },
+      { title: "Vos secrets restent chez vous", text: "Identifiants chiffrés sur votre machine." },
+    ],
+  },
 };
