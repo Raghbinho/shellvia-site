@@ -52,5 +52,6 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
+          security: strict
           local-dir: ./out/
           server-dir: ${{ secrets.FTP_DIR }}

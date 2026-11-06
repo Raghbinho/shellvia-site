@@ -12,10 +12,10 @@ export interface Dict {
     switchLabel: string;
   };
   pages: {
-    home: string;
-    download: string;
     legal: string;
     privacy: string;
+    legalTitle: string;
+    privacyTitle: string;
   };
   footer: {
     releaseNotes: string;

@@ -88,34 +88,6 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  height: 52px;
-  padding: 0 26px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  text-decoration: none;
-}
-.pri {
-  background: var(--cyan);
-  color: var(--on);
-  box-shadow: 0 10px 40px -8px var(--glow-cyan);
-}
-.pri:hover {
-  color: var(--on);
-}
-.glass {
-  border: 1px solid var(--line-strong);
-  color: var(--text);
-  background: var(--glass-soft);
-}
-.glass:hover {
-  color: var(--text);
-  background: var(--glass-hover-strong);
-}
 .stage {
   position: relative;
   perspective: 1800px;

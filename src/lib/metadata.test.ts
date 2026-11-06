@@ -5,6 +5,7 @@ describe("pageMetadata", () => {
   it("builds absolute canonical and alternates", () => {
     const m = pageMetadata("download", "fr", "T", "D");
     expect(m.alternates?.canonical).toBe("https://shellvia.com/fr/telecharger/");
+    expect(m.icons).toEqual({ icon: "/assets/shellvia-icon.svg" });
     expect(m.alternates?.languages).toEqual({
       en: "https://shellvia.com/download/",
       fr: "https://shellvia.com/fr/telecharger/",

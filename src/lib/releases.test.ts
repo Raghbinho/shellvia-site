@@ -69,3 +69,12 @@ describe("releases", () => {
     expect(isShown(links, "deb")).toBe(true);
   });
 });
+
+describe("isStableVersion", () => {
+  it("accepts only plain x.y.z versions", async () => {
+    const { isStableVersion } = await import("@/lib/releases");
+    expect(isStableVersion("0.3.0")).toBe(true);
+    expect(isStableVersion("0.2.0-beta.1")).toBe(false);
+    expect(isStableVersion(null)).toBe(false);
+  });
+});

@@ -27,8 +27,9 @@
 .footer a:hover { color: var(--text); }
 .footR { margin-left: auto; display: flex; flex-wrap: wrap; gap: 22px; }
 .banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
   display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px;
-  padding: 8px 16px; background: var(--bg2); border-bottom: 1px solid var(--line);
+  padding: 8px 16px; background: var(--bg2); border-top: 1px solid var(--line);
   color: var(--text2); font-size: 14px;
 }
 .banner a { color: var(--cyan); }

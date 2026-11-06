@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 const t = getDict("en");
 
-export const metadata = pageMetadata("privacy", "en", t.pages.privacy, t.privacy.intro);
+export const metadata = pageMetadata("privacy", "en", t.pages.privacyTitle, t.privacy.intro);
 
 export default function Page() {
   return <Privacy lang="en" />;

@@ -15,10 +15,10 @@ export const en: Dict = {
     switchLabel: "Voir en français",
   },
   pages: {
-    home: "Shellvia",
-    download: "Download",
     legal: "Legal notice",
     privacy: "Privacy",
+    legalTitle: "Legal notice · Shellvia",
+    privacyTitle: "Privacy · Shellvia",
   },
   footer: {
     releaseNotes: "Release notes",
@@ -257,7 +257,7 @@ export const en: Dict = {
       "We use Umami Cloud to count page views, referrers, countries and device types. This measurement uses no cookie and no personal identifier, and it does not follow you from one site to another.",
     downloadsTitle: "Downloads",
     downloadsText:
-      "Installers are served by GitHub. When you download one, GitHub receives your request under its own privacy policy.",
+      "Installers are served by GitHub. When you download one, GitHub receives your request under its own privacy policy. The home and download pages also ask GitHub (api.github.com) for the latest version number when they load, so GitHub receives your IP address, like for any web request.",
     appTitle: "The Shellvia app",
     appText:
       "The app collects nothing: no telemetry, no usage statistics. Your hosts, keys and credentials stay encrypted on your machine.",

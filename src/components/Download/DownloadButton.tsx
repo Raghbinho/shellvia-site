@@ -4,7 +4,7 @@ import { Download } from "lucide-react";
 import { getDict, type Lang } from "@/i18n";
 import { linkFor, type ReleaseLinks } from "@/lib/releases";
 import { recommendedFormat, type Os } from "@/lib/platform";
-import styles from "./Download.module.css";
+import buttons from "@/styles/buttons.module.css";
 import { useReleaseLinks } from "./useReleaseLinks";
 import { usePlatform } from "./usePlatform";
 
@@ -26,7 +26,7 @@ export function DownloadButton({ lang, links, variant, os }: Props) {
   const primary = !isCard || (target === platform.os && platform.detected);
   return (
     <a
-      className={`${styles.btn} ${primary ? styles.pri : styles.glass}`}
+      className={`${buttons.btn} ${primary ? buttons.pri : buttons.glass}`}
       href={linkFor(live, recommendedFormat(target))}
       aria-label={isCard ? label : undefined}
     >

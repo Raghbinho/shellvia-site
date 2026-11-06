@@ -13,6 +13,7 @@ export function pageMetadata(
   return {
     title,
     description,
+    icons: { icon: "/assets/shellvia-icon.svg" },
     alternates: {
       canonical: SITE_URL + pathFor(page, lang),
       languages: { en, fr, "x-default": en },

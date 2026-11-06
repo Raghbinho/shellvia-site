@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { getDict, type Lang } from "@/i18n";
 import { AppWindow } from "../AppWindow/AppWindow";
+import buttons from "@/styles/buttons.module.css";
 import styles from "./Hero.module.css";
 
 export function Hero({ lang, cta }: { lang: Lang; cta: ReactNode }) {
@@ -21,7 +22,7 @@ export function Hero({ lang, cta }: { lang: Lang; cta: ReactNode }) {
       </p>
       <div className={styles.ctas}>
         {cta}
-        <a className={`${styles.btn} ${styles.glass}`} href="#features">
+        <a className={`${buttons.btn} ${buttons.glass}`} href="#features">
           {t.features}
         </a>
       </div>

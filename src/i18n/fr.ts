@@ -15,10 +15,10 @@ export const fr: Dict = {
     switchLabel: "View in English",
   },
   pages: {
-    home: "Shellvia",
-    download: "Télécharger",
     legal: "Mentions légales",
     privacy: "Confidentialité",
+    legalTitle: "Mentions légales · Shellvia",
+    privacyTitle: "Confidentialité · Shellvia",
   },
   footer: {
     releaseNotes: "Notes de version",
@@ -257,7 +257,7 @@ export const fr: Dict = {
       "Nous utilisons Umami Cloud pour compter les pages vues, les sites référents, les pays et les types d'appareil. Cette mesure n'utilise aucun cookie ni identifiant personnel, et ne vous suit pas d'un site à l'autre.",
     downloadsTitle: "Téléchargements",
     downloadsText:
-      "Les installeurs sont servis par GitHub. Quand vous en téléchargez un, GitHub reçoit votre requête selon sa propre politique de confidentialité.",
+      "Les installeurs sont servis par GitHub. Quand vous en téléchargez un, GitHub reçoit votre requête selon sa propre politique de confidentialité. Les pages d'accueil et de téléchargement demandent aussi à GitHub (api.github.com) le dernier numéro de version au chargement ; GitHub reçoit donc votre adresse IP, comme pour toute requête web.",
     appTitle: "L'application Shellvia",
     appText:
       "L'application ne collecte rien : ni télémétrie, ni statistiques d'usage. Vos hôtes, clés et identifiants restent chiffrés sur votre machine.",

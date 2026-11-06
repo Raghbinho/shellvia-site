@@ -39,7 +39,7 @@ Secrets et variable à définir une fois (par vous, avec `gh`, sans les écrire
 dans le dépôt) :
 
 ```bash
-gh secret set FTP_HOST
+gh secret set FTP_HOST         # nom d'hôte correspondant au certificat TLS de Hostinger
 gh secret set FTP_USER
 gh secret set FTP_PASSWORD
 gh secret set FTP_DIR            # doit finir par / ex. /domains/shellvia.com/public_html/
@@ -54,7 +54,16 @@ pnpm deploy:ftp
 ```
 
 `FTP_DIR` doit impérativement se terminer par `/` (exigence de l'action FTP ;
-le workflow et le script refusent sinon).
+le workflow et le script refusent sinon). Valeur : `/` quand le compte FTP est
+limité au dossier du site (cas recommandé ci-dessous) ; sinon
+`/domains/shellvia.com/public_html/`.
+
+`FTP_HOST` doit être le nom d'hôte qui correspond au certificat TLS de Hostinger :
+le workflow active `security: strict` (vérification du certificat), donc une
+adresse IP ou un autre nom fait échouer l'envoi.
+
+Un `pnpm deploy:ftp` local sans `NEXT_PUBLIC_UMAMI_WEBSITE_ID` publie des pages
+sans statistiques d'audience : définissez la variable avant de lancer la commande.
 
 Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
 `public/.htaccess` est forcé en fins de ligne LF (`.gitattributes`).
@@ -63,11 +72,15 @@ Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
 
 1. Héberger les trois domaines sur le même hébergement : ajouter chaque domaine
    (hPanel, Sites web, Ajouter un site web) en pointant son dossier racine vers
-   le même répertoire, ou configurer les deux autres en redirection 301 vers le
-   domaine principal.
+   le même répertoire (recommandé : `public/.htaccess` redirige alors shellvia.fr
+   vers `https://shellvia.com/fr/…` et shellvia.app vers shellvia.com). Éviter la
+   redirection 301 de hPanel, qui perdrait la correspondance `/fr/` de
+   shellvia.fr ; si vous l'utilisez malgré tout, shellvia.fr doit pointer vers
+   `https://shellvia.com/fr/`.
 2. Pointer les DNS de chaque domaine vers l'hébergement (serveurs de noms
    Hostinger ou enregistrements A/AAAA indiqués dans hPanel).
-3. Activer le SSL gratuit (hPanel, Sécurité, SSL) pour chaque domaine, puis
-   activer « Forcer HTTPS ».
+3. Activer le SSL gratuit (hPanel, Sécurité, SSL) pour chaque domaine. Ne pas
+   activer « Forcer HTTPS » dans hPanel : `.htaccess` force déjà HTTPS, et ce
+   réglage peut être écrasé par les déploiements.
 4. Créer un compte FTP dédié limité au dossier du site, et utiliser son
    identifiant comme `FTP_USER`.

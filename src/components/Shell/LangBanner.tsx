@@ -40,7 +40,7 @@ export function LangBanner({ lang, page }: { lang: Lang; page: PageKey }) {
   const text = getDict(lang).langBanner;
   const other = otherLang(lang);
   return (
-    <div className={styles.banner}>
+    <div className={styles.banner} role="region" aria-label={text.text} lang={other}>
       <span>{text.text}</span>
       <a href={pathFor(page, other)} hrefLang={other}>
         {text.link}

@@ -31,6 +31,8 @@ test("robots.txt names the sitemap", async ({ request }) => {
 test("Hostinger .htaccess is shipped in the build", () => {
   const htaccess = readFileSync("out/.htaccess", "utf8");
   expect(htaccess).toContain("https://shellvia.com/fr/$1");
+  expect(htaccess).toContain('<Files ".ftp-deploy-sync-state.json">');
+  expect(htaccess).toContain('Header set Cache-Control "no-cache"');
 });
 
 for (const path of PATHS) {
@@ -39,5 +41,12 @@ for (const path of PATHS) {
     await expect(page.locator("h1")).toHaveCount(1);
     const description = await page.locator('meta[name="description"]').getAttribute("content");
     expect(description?.trim().length ?? 0).toBeGreaterThan(0);
+  });
+}
+
+for (const path of PATHS) {
+  test(`${path} links the favicon`, async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator('link[rel="icon"][href="/assets/shellvia-icon.svg"]')).toHaveCount(1);
   });
 }

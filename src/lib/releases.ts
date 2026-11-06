@@ -70,3 +70,7 @@ export function linkFor(links: ReleaseLinks, format: Format): string {
 export function isShown(links: ReleaseLinks, format: Format): boolean {
   return links.version === null || format in links.files;
 }
+
+export function isStableVersion(version: string | null): version is string {
+  return version !== null && /^\d+\.\d+\.\d+$/.test(version);
+}

@@ -22,6 +22,7 @@ export function Nav({ lang, page }: { lang: Lang; page: PageKey }) {
           <a
             href={pathFor(page, "fr")}
             hrefLang="fr"
+            lang={lang === "fr" ? undefined : "fr"}
             aria-label={lang === "fr" ? undefined : t.nav.switchLabel}
             aria-current={lang === "fr" ? "true" : undefined}
           >
@@ -31,6 +32,7 @@ export function Nav({ lang, page }: { lang: Lang; page: PageKey }) {
           <a
             href={pathFor(page, "en")}
             hrefLang="en"
+            lang={lang === "en" ? undefined : "en"}
             aria-label={lang === "en" ? undefined : t.nav.switchLabel}
             aria-current={lang === "en" ? "true" : undefined}
           >

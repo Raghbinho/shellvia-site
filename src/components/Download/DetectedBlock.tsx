@@ -4,7 +4,8 @@ import { Download, Monitor } from "lucide-react";
 import { getDict, type Lang } from "@/i18n";
 import { RELEASE_NOTES_URL } from "@/lib/constants";
 import { recommendedFormat } from "@/lib/platform";
-import { linkFor, type ReleaseLinks } from "@/lib/releases";
+import { isStableVersion, linkFor, type ReleaseLinks } from "@/lib/releases";
+import buttons from "@/styles/buttons.module.css";
 import styles from "./Download.module.css";
 import { usePlatform } from "./usePlatform";
 import { useReleaseLinks } from "./useReleaseLinks";
@@ -25,14 +26,14 @@ export function DetectedBlock({ lang, links }: { lang: Lang; links: ReleaseLinks
         <h2 className={styles.mainTitle}>{t.productFor.replace("{os}", osName)}</h2>
         <div className={styles.meta}>
           {t.meta[os]}
-          {live.version !== null && ` · ${t.version.replace("{version}", live.version)}`}
+          {isStableVersion(live.version) && ` · ${t.version.replace("{version}", live.version)}`}
         </div>
         <div className={styles.alt}>
           {t.altPrompt} <a href="#others">{t.altLink}</a>
         </div>
       </div>
       <div className={styles.side}>
-        <a className={`${styles.btn} ${styles.pri}`} href={linkFor(live, recommendedFormat(os))}>
+        <a className={`${buttons.btn} ${buttons.pri}`} href={linkFor(live, recommendedFormat(os))}>
           <Download size="1.1em" aria-hidden="true" />
           {t.button}
         </a>

@@ -112,5 +112,6 @@ test.describe("works without JavaScript", () => {
     expect(hrefs.length).toBe(3);
     for (const href of hrefs) expect(href).toMatch(/^https:\/\/github\.com\//);
     await expect(page.locator("[data-play]")).toHaveCount(0);
+    await expect(page.getByText("Done.").first()).toBeVisible();
   });
 });

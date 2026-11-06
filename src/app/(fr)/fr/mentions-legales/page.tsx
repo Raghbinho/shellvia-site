@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 const t = getDict("fr");
 
-export const metadata = pageMetadata("legal", "fr", t.pages.legal, t.meta.description);
+export const metadata = pageMetadata("legal", "fr", t.pages.legalTitle, t.meta.description);
 
 export default function Page() {
   return <LegalNotice lang="fr" />;
