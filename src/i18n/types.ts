@@ -29,4 +29,33 @@ export interface Dict {
     link: string;
     close: string;
   };
+  window: {
+    files: string;
+    name: string;
+    size: string;
+    filter: string;
+    follow: string;
+    tunnels: string;
+    tunnelsOne: string;
+    tunnelsTwo: string;
+    connected: string;
+    transfers: string;
+    statusOne: string;
+    statusTwo: string;
+    sizeBashrc: string;
+    sizeDeploy: string;
+    sizeIndex: string;
+    sizeRobots: string;
+    sizeEnv: string;
+  };
+  hero: {
+    kicker: string;
+    kickerBadge: string;
+    titleLine1: string;
+    titleLine2: string;
+    leadStrong: string;
+    leadRest: string;
+    download: string;
+    features: string;
+  };
 }

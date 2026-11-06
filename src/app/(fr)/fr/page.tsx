@@ -1,5 +1,6 @@
-import { PagePlaceholder } from "@/components/Shell/PagePlaceholder";
+import { Hero } from "@/components/Hero/Hero";
 import { getDict } from "@/i18n";
+import { FALLBACK_URL } from "@/lib/constants";
 import { pageMetadata } from "@/lib/metadata";
 
 const t = getDict("fr");
@@ -7,5 +8,5 @@ const t = getDict("fr");
 export const metadata = pageMetadata("home", "fr", t.pages.home, t.meta.description);
 
 export default function Page() {
-  return <PagePlaceholder page="home" lang="fr" />;
+  return <Hero lang="fr" downloadHref={FALLBACK_URL} downloadOs="Windows" />;
 }

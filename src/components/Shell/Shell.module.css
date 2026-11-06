@@ -6,19 +6,19 @@
 .brand img { width: 30px; height: 30px; border-radius: 8px; }
 .navlinks {
   display: flex; gap: 6px; margin-left: 24px; padding: 5px; border: 1px solid var(--line);
-  border-radius: 999px; background: rgb(255 255 255 / 3%); backdrop-filter: blur(8px);
+  border-radius: 999px; background: var(--glass); backdrop-filter: blur(8px);
 }
 .navlinks a { color: var(--text2); font-size: 14px; padding: 6px 14px; border-radius: 999px; text-decoration: none; }
-.navlinks a:hover { color: var(--text); background: rgb(255 255 255 / 7%); }
+.navlinks a:hover { color: var(--text); background: var(--glass-hover); }
 .navend { margin-left: auto; display: flex; gap: 16px; align-items: center; font: 500 12px var(--font-mono); color: var(--text3); }
 .navend span a { color: var(--text3); text-decoration: none; }
 .navend span a[aria-current="true"] { color: var(--text); }
 .btn {
   display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 16%); background: rgb(255 255 255 / 4%); color: var(--text);
+  border: 1px solid var(--line-strong); background: var(--glass-soft); color: var(--text);
   font: 600 14px var(--font-display); text-decoration: none;
 }
-.btn:hover { color: var(--text); background: rgb(255 255 255 / 8%); }
+.btn:hover { color: var(--text); background: var(--glass-hover-strong); }
 .footer {
   border-top: 1px solid var(--line); padding: 28px 0 44px; display: flex; flex-wrap: wrap;
   gap: 24px; font: 400 12.5px var(--font-mono); color: var(--text3);
