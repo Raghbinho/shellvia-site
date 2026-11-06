@@ -14,10 +14,13 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
         with:
           version: 10
@@ -31,10 +34,18 @@ jobs:
       - run: pnpm test
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e
-      - run: pnpm check:links
       - run: pnpm build:prod
         env:
           NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+      - run: pnpm check:links
+      - name: Check FTP_DIR ends with a slash
+        env:
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        run: |
+          case "$FTP_DIR" in
+            */) ;;
+            *) echo "::error::The FTP_DIR secret must end with a trailing slash"; exit 1 ;;
+          esac
       - uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}

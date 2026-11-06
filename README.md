@@ -42,7 +42,7 @@ dans le dépôt) :
 gh secret set FTP_HOST
 gh secret set FTP_USER
 gh secret set FTP_PASSWORD
-gh secret set FTP_DIR            # ex. /domains/shellvia.com/public_html
+gh secret set FTP_DIR            # doit finir par / ex. /domains/shellvia.com/public_html/
 gh variable set UMAMI_WEBSITE_ID # identifiant Umami ; vide = pas de statistiques
 ```
 
@@ -52,6 +52,9 @@ Déploiement depuis le poste (mêmes variables d'environnement `FTP_HOST`,
 ```bash
 pnpm deploy:ftp
 ```
+
+`FTP_DIR` doit imp�rativement se terminer par `/` (exigence de l'action FTP ;
+le workflow et le script refusent sinon).
 
 Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
 `public/.htaccess` est forcé en fins de ligne LF (`.gitattributes`).

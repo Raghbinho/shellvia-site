@@ -14,6 +14,8 @@ if (!dir) fail("Usage: node scripts/deploy-ftp.mjs <dir>");
 const missing = REQUIRED.filter((name) => !process.env[name]);
 if (missing.length > 0) fail(`Missing environment variable(s): ${missing.join(", ")}`);
 
+if (!process.env.FTP_DIR.endsWith("/")) fail("FTP_DIR must end with a trailing slash.");
+
 const client = new Client();
 try {
   await client.access({
