@@ -4,6 +4,9 @@ import { expect, test } from "./fixtures";
 
 const RELEASE = JSON.parse(readFileSync("src/lib/fixtures/release.json", "utf8"));
 
+const MAC_SAFARI_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15";
+
 const PAGES = [
   { path: "/download/", detected: "Your system: Windows", heading: "Shellvia for Windows" },
   {
@@ -43,9 +46,16 @@ test("first launch commands are shown", async ({ page }) => {
 });
 
 test("keeps build-time links when the API fails", async ({ page }) => {
-  await page.route(LATEST_API, (r) => r.fulfill({ status: 403 }));
+  let calls = 0;
+  await page.route(LATEST_API, (r) => {
+    calls += 1;
+    return r.fulfill({ status: 403 });
+  });
+  const requested = page.waitForRequest(LATEST_API);
   await page.goto("/download/");
+  await requested;
   await page.waitForLoadState("networkidle");
+  expect(calls).toBeGreaterThan(0);
   await expect(page.getByRole("main").getByRole("link", { name: "Download", exact: true })).toHaveAttribute(
     "href",
     /Shellvia_0\.3\.0_x64-setup\.exe$/,
@@ -66,6 +76,18 @@ test("refreshes to a newer release", async ({ page }) => {
     "href",
     /0\.4\.0_x64-setup\.exe$/,
   );
+});
+
+test.describe("macOS Safari visitor", () => {
+  test.use({ userAgent: MAC_SAFARI_UA });
+
+  test("is detected and offered the dmg", async ({ page }) => {
+    await page.goto("/download/");
+    await expect(page.getByText("Your system: macOS")).toBeVisible();
+    await expect(
+      page.getByRole("main").getByRole("link", { name: "Download", exact: true }),
+    ).toHaveAttribute("href", /\.dmg$/);
+  });
 });
 
 test.describe("works without JavaScript", () => {
