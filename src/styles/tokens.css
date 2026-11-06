@@ -25,6 +25,18 @@
   --aurora-cyan: oklch(0.82 0.14 210 / 0.38);
   --aurora-violet: oklch(0.72 0.14 295 / 0.32);
   --aurora-cyan-faint: oklch(0.82 0.14 210 / 0.14);
+  --glass-track: rgb(255 255 255 / 6%);
+  --chip-bg: rgb(255 255 255 / 2%);
+  --key-bg: #141a22;
+  --key-line: rgb(255 255 255 / 12%);
+  --cyan-a14: oklch(0.82 0.14 210 / 0.14);
+  --cyan-a16: oklch(0.82 0.14 210 / 0.16);
+  --cyan-a25: oklch(0.82 0.14 210 / 0.25);
+  --cyan-a70: oklch(0.82 0.14 210 / 0.7);
+  --violet-a22: oklch(0.72 0.14 295 / 0.22);
+  --violet-a28: oklch(0.72 0.14 295 / 0.28);
+  --violet-a30: oklch(0.72 0.14 295 / 0.3);
+  --violet-a45: oklch(0.72 0.14 295 / 0.45);
   --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
   --font-ui: "Inter Variable", system-ui, sans-serif;

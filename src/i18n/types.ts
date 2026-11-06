@@ -58,4 +58,42 @@ export interface Dict {
     download: string;
     features: string;
   };
+  features: {
+    title: string;
+    titleEm: string;
+    sub: string;
+    files: {
+      local: string;
+      remote: string;
+      items: string;
+      transfers: string;
+      title: string;
+      before: string;
+      code: string;
+      after: string;
+    };
+    sessions: { title: string; before: string; after: string };
+    shells: { title: string; text: string };
+    tunnels: { title: string; text: string };
+    snippets: { title: string; text: string };
+    multi: { title: string; text: string; done: string };
+    keys: {
+      title: string;
+      before: string;
+      code: string;
+      ctrl: string;
+      shift: string;
+      connectTo: string;
+    };
+    agent: {
+      title: string;
+      text: string;
+      asks: string;
+      deny: string;
+      allow: string;
+      granted: string;
+    };
+    vault: { title: string; text: string; name: string; encrypted: string };
+    also: { title: string; chips: string[] };
+  };
 }

@@ -62,4 +62,78 @@ export const en: Dict = {
     download: "Download for {os}",
     features: "See the features",
   },
+  features: {
+    title: "Everything you need.",
+    titleEm: "In one place.",
+    sub: "No more juggling a terminal, an SFTP client, a tunnel manager and a file of commands.",
+    files: {
+      local: "This PC · C:\\Projects\\app",
+      remote: "web-01 · /var/www/app",
+      items: "2 items",
+      transfers: "Transfers",
+      title: "Drag it, it's transferred.",
+      before:
+        "Dual local and remote panes, multi-selection, transfer queue. The Files panel follows your shell's folder, remote or local. Rename, delete, ",
+      code: "chmod",
+      after: " permissions: without leaving the app.",
+    },
+    sessions: {
+      title: "Organized sessions",
+      before: "Folders, favorites, search. Import from ",
+      after: ", jump through a bastion.",
+    },
+    shells: {
+      title: "Your local shells too",
+      text: "PowerShell, WSL, zsh… in the same tabs and split panes.",
+    },
+    tunnels: {
+      title: "Tunnels in one click",
+      text: "Local, remote and SOCKS5 forwards, tracked live.",
+    },
+    snippets: {
+      title: "Snippets",
+      text: "Your saved commands, sent to the terminal in one gesture.",
+    },
+    multi: {
+      title: "Multi-exec",
+      text: "One input, sent to several terminals at once.",
+      done: "Done.",
+    },
+    keys: {
+      title: "Everything on the keyboard",
+      before: "Command palette and quick connect ",
+      code: "user@host:port",
+      ctrl: "Ctrl",
+      shift: "Shift",
+      connectTo: "Connect to",
+    },
+    agent: {
+      title: "SSH keys and agent",
+      text: "A key library and a built-in agent that asks for your approval.",
+      asks: "requests",
+      deny: "Deny",
+      allow: "Allow",
+      granted: "✓ Signature granted",
+    },
+    vault: {
+      title: "Your secrets stay with you",
+      text: "Local encrypted vault. No account, no cloud.",
+      name: "Local vault",
+      encrypted: "encrypted",
+    },
+    also: {
+      title: "And also",
+      chips: [
+        "Tabs and split panes",
+        "known_hosts import",
+        "Verified fingerprints",
+        "Connection test",
+        "Trash for local files",
+        "Dark and light themes",
+        "Compact or comfortable density",
+        "Signed updates",
+        "French and English",
+      ],
+    },
+  },
 };

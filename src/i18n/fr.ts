@@ -62,4 +62,78 @@ export const fr: Dict = {
     download: "Télécharger pour {os}",
     features: "Voir les fonctions",
   },
+  features: {
+    title: "Tout ce qu'il faut.",
+    titleEm: "Au même endroit.",
+    sub: "Fini de jongler entre un terminal, un client SFTP, un gestionnaire de tunnels et un fichier de commandes.",
+    files: {
+      local: "Ce PC · C:\\Projets\\app",
+      remote: "web-01 · /var/www/app",
+      items: "2 éléments",
+      transfers: "Transferts",
+      title: "Glissez, c'est transféré.",
+      before:
+        "Double panneau local et distant, multi-sélection, file de transferts. Le panneau Fichiers suit le dossier de votre shell, distant ou local. Renommer, supprimer, droits ",
+      code: "chmod",
+      after: " : sans quitter l'app.",
+    },
+    sessions: {
+      title: "Sessions organisées",
+      before: "Dossiers, favoris, recherche. Import de ",
+      after: ", rebond par un bastion.",
+    },
+    shells: {
+      title: "Vos shells locaux aussi",
+      text: "PowerShell, WSL, zsh… dans les mêmes onglets et volets divisés.",
+    },
+    tunnels: {
+      title: "Tunnels en un clic",
+      text: "Redirections locales, distantes et SOCKS5, suivies en direct.",
+    },
+    snippets: {
+      title: "Snippets",
+      text: "Vos commandes enregistrées, envoyées au terminal en un geste.",
+    },
+    multi: {
+      title: "Multi-exécution",
+      text: "Une saisie, envoyée à plusieurs terminaux à la fois.",
+      done: "Fait.",
+    },
+    keys: {
+      title: "Tout au clavier",
+      before: "Palette de commandes et connexion rapide ",
+      code: "user@hôte:port",
+      ctrl: "Ctrl",
+      shift: "Maj",
+      connectTo: "Se connecter à",
+    },
+    agent: {
+      title: "Clés et agent SSH",
+      text: "Bibliothèque de clés et agent intégré qui demande votre accord.",
+      asks: "demande",
+      deny: "Refuser",
+      allow: "Autoriser",
+      granted: "✓ Signature accordée",
+    },
+    vault: {
+      title: "Vos secrets restent chez vous",
+      text: "Coffre chiffré local. Aucun compte, aucun cloud.",
+      name: "Coffre local",
+      encrypted: "chiffré",
+    },
+    also: {
+      title: "Et aussi",
+      chips: [
+        "Onglets et volets divisés",
+        "Import de known_hosts",
+        "Empreintes vérifiées",
+        "Test de connexion",
+        "Corbeille pour les fichiers locaux",
+        "Thèmes sombre et clair",
+        "Densité compacte ou confortable",
+        "Mises à jour signées",
+        "Français et anglais",
+      ],
+    },
+  },
 };

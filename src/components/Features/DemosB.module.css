@@ -1,0 +1,352 @@
+/* Snippets, multi-exec, keyboard, agent and vault demos. Base styles are the
+   end state; animations only exist under [data-play="true"]. */
+.snpick {
+  background: transparent;
+}
+.sntyp {
+  width: 33ch;
+}
+.snterm {
+  border-top: 1px dashed var(--line);
+  padding-top: 6px;
+  margin-top: 2px;
+  color: var(--text);
+}
+[data-play="true"] .snpick {
+  animation: snPick 8s infinite both;
+}
+[data-play="true"] .sntyp {
+  animation: snType 8s infinite both;
+}
+[data-play="true"] .snout {
+  animation: snOut 8s infinite both;
+}
+@keyframes snPick {
+  0%,
+  8% {
+    background: transparent;
+  }
+  12%,
+  24% {
+    background: var(--violet-a28);
+  }
+  30%,
+  100% {
+    background: transparent;
+  }
+}
+@keyframes snType {
+  0%,
+  24% {
+    width: 0;
+    animation-timing-function: steps(33, end);
+  }
+  50%,
+  92% {
+    width: 33ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes snOut {
+  0%,
+  54% {
+    opacity: 0;
+  }
+  58%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Multi-exec */
+.multi {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.mt {
+  background: var(--bg3);
+  border: 1px solid var(--violet-a45);
+  border-radius: 10px;
+  padding: 8px 9px;
+  font: 400 11.5px var(--font-mono);
+  color: var(--text2);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  min-height: 76px;
+}
+.mt b {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 11px;
+}
+.mtyp {
+  width: 10ch;
+}
+[data-play="true"] .mtyp {
+  animation: mType 7s infinite both;
+}
+[data-play="true"] .mout {
+  animation: mOut 7s infinite both;
+}
+@keyframes mType {
+  0%,
+  12% {
+    width: 0;
+    animation-timing-function: steps(10, end);
+  }
+  38%,
+  92% {
+    width: 10ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes mOut {
+  0%,
+  44% {
+    opacity: 0;
+  }
+  48%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Keyboard and palette */
+.keys {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.keys kbd {
+  font: 600 14px var(--font-mono);
+  padding: 7px 11px;
+  border-radius: 9px;
+  background: var(--key-bg);
+  border: 1px solid var(--key-line);
+  border-bottom-width: 3px;
+  color: var(--text);
+}
+.pal {
+  margin-bottom: 16px;
+}
+.ptyp {
+  width: 3ch;
+}
+.phl {
+  background: var(--cyan-a16);
+  color: var(--text);
+}
+[data-play="true"] .keys kbd {
+  animation: kPress 7s infinite both;
+}
+[data-play="true"] .keys .k2 {
+  animation-delay: 0.15s;
+}
+[data-play="true"] .keys .k3 {
+  animation-delay: 0.3s;
+}
+[data-play="true"] .pal {
+  animation: pOpen 7s infinite both;
+}
+[data-play="true"] .ptyp {
+  animation: pType 7s infinite both;
+}
+[data-play="true"] .pres {
+  animation: pRes 7s infinite both;
+}
+@keyframes kPress {
+  0%,
+  8% {
+    transform: none;
+    border-bottom-width: 3px;
+    background: var(--key-bg);
+  }
+  10%,
+  22% {
+    transform: translateY(2px);
+    border-bottom-width: 1px;
+    background: var(--cyan-a25);
+  }
+  25%,
+  100% {
+    transform: none;
+    border-bottom-width: 3px;
+    background: var(--key-bg);
+  }
+}
+@keyframes pOpen {
+  0%,
+  24% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  28%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pType {
+  0%,
+  30% {
+    width: 0;
+    animation-timing-function: steps(3, end);
+  }
+  42%,
+  92% {
+    width: 3ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+@keyframes pRes {
+  0%,
+  44% {
+    opacity: 0;
+  }
+  48%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Agent */
+.agbtns {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.agb {
+  font: 500 11px var(--font-mono);
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--text2);
+}
+.agok {
+  background: var(--cyan);
+  color: var(--on);
+  border-color: var(--cyan);
+}
+[data-play="true"] .agok {
+  animation: agOk 8s infinite both;
+}
+[data-play="true"] .agdone {
+  animation: agDone 8s infinite both;
+}
+@keyframes agOk {
+  0%,
+  30% {
+    background: transparent;
+    color: var(--text2);
+    border-color: var(--line);
+  }
+  34%,
+  92% {
+    background: var(--cyan);
+    color: var(--on);
+    border-color: var(--cyan);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@keyframes agDone {
+  0%,
+  38% {
+    opacity: 0;
+  }
+  42%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Vault */
+.vlock {
+  display: grid;
+  color: var(--cyan);
+}
+.vlock > svg {
+  grid-area: 1 / 1;
+}
+.vopen {
+  opacity: 0;
+}
+[data-play="true"] .vrow {
+  animation: vIn 8s infinite both;
+}
+[data-play="true"] .vrow.d2 {
+  animation-delay: 0.3s;
+}
+[data-play="true"] .vrow.d3 {
+  animation-delay: 0.6s;
+}
+[data-play="true"] .vopen {
+  animation: vOpen 8s infinite both;
+}
+[data-play="true"] .vshut {
+  animation: vShut 8s infinite both;
+}
+@keyframes vIn {
+  0%,
+  8% {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  14%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes vOpen {
+  0%,
+  40% {
+    opacity: 1;
+  }
+  44%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes vShut {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  44%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
