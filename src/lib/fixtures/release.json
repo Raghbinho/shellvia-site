@@ -1,0 +1,45 @@
+{
+  "tag_name": "v0.3.0",
+  "assets": [
+    {
+      "name": "Shellvia_0.3.0_x64-setup.exe",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_x64-setup.exe"
+    },
+    {
+      "name": "Shellvia_0.3.0_x64-setup.exe.sig",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_x64-setup.exe.sig"
+    },
+    {
+      "name": "Shellvia_0.3.0_x64_en-US.msi",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_x64_en-US.msi"
+    },
+    {
+      "name": "Shellvia_0.3.0_universal.dmg",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_universal.dmg"
+    },
+    {
+      "name": "Shellvia_0.3.0_universal.app.tar.gz",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_universal.app.tar.gz"
+    },
+    {
+      "name": "Shellvia_0.3.0_amd64.AppImage",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_amd64.AppImage"
+    },
+    {
+      "name": "Shellvia_0.3.0_amd64.AppImage.sig",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_amd64.AppImage.sig"
+    },
+    {
+      "name": "Shellvia_0.3.0_amd64.AppImage.tar.gz",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_amd64.AppImage.tar.gz"
+    },
+    {
+      "name": "Shellvia_0.3.0_amd64.deb",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/Shellvia_0.3.0_amd64.deb"
+    },
+    {
+      "name": "latest.json",
+      "browser_download_url": "https://github.com/Raghbinho/shellvia-releases/releases/download/v0.3.0/latest.json"
+    }
+  ]
+}
