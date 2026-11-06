@@ -53,7 +53,7 @@ Déploiement depuis le poste (mêmes variables d'environnement `FTP_HOST`,
 pnpm deploy:ftp
 ```
 
-`FTP_DIR` doit imp�rativement se terminer par `/` (exigence de l'action FTP ;
+`FTP_DIR` doit impérativement se terminer par `/` (exigence de l'action FTP ;
 le workflow et le script refusent sinon).
 
 Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
