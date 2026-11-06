@@ -11,12 +11,21 @@ export const fr: Dict = {
     download: "Télécharger",
     faq: "FAQ",
     downloadButton: "Télécharger",
+    label: "Principale",
+    switchLabel: "View in English",
+  },
+  pages: {
+    home: "Shellvia",
+    download: "Télécharger",
+    legal: "Mentions légales",
+    privacy: "Confidentialité",
   },
   footer: {
     releaseNotes: "Notes de version",
     privacy: "Confidentialité",
     legal: "Mentions légales",
     contact: "Contact",
+    copyright: "© 2026 Shellvia",
   },
   // Shown on a French page to a non-French visitor.
   langBanner: {
