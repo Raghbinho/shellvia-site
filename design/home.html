@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shellvia — maquette 2b animée</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="https://unpkg.com/lucide-static@0.460.0/font/lucide.css" />
+<style>
+body{margin:0;background:#07090D}
+a{color:#67E8F9;text-decoration:none}
+a:hover{color:#CFFAFE}
+.sg{--bg:#07090D;--bg2:#0E1218;--bg3:#0A0D12;--line:rgba(255,255,255,.08);--text:#F1F4F8;--text2:#A8B2C1;--text3:#6E7889;--cyan:oklch(0.82 0.14 210);--violet:oklch(0.72 0.14 295);--lime:oklch(0.86 0.14 135);--ok:#34D399;--off:#3A4452;--on:#04161C;background:var(--bg);color:var(--text);font:400 17px/1.6 'Bricolage Grotesque',system-ui,sans-serif;min-height:100vh;overflow:hidden;position:relative}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px;position:relative}
+.aurora{position:absolute;top:-220px;left:50%;width:1500px;height:1100px;transform:translateX(-50%);background:radial-gradient(40% 35% at 30% 40%,oklch(0.82 0.14 210 / .38),transparent 70%),radial-gradient(35% 30% at 72% 35%,oklch(0.72 0.14 295 / .32),transparent 70%),radial-gradient(30% 25% at 50% 70%,oklch(0.82 0.14 210 / .14),transparent 70%);filter:blur(30px);pointer-events:none}
+.grain{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px);pointer-events:none}
+.nav{display:flex;align-items:center;gap:30px;height:80px;position:relative}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:20px;color:var(--text);letter-spacing:-0.02em}
+.brand img{width:30px;height:30px;border-radius:8px}
+.navlinks{display:flex;gap:6px;margin-left:24px;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);backdrop-filter:blur(8px)}
+.navlinks a{color:var(--text2);font-size:14px;padding:6px 14px;border-radius:999px}
+.navlinks a:first-child{background:rgba(255,255,255,.07);color:var(--text)}
+.navend{margin-left:auto;display:flex;gap:16px;align-items:center;font:500 12px 'JetBrains Mono',monospace;color:var(--text3)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;font-weight:600;font-size:16px}
+.btn.pri{background:var(--cyan);color:var(--on);box-shadow:0 10px 40px -8px oklch(0.82 0.14 210 / .6)}
+.btn.pri:hover{color:var(--on)}
+.btn.glass{border:1px solid rgba(255,255,255,.16);color:var(--text);background:rgba(255,255,255,.04)}
+.btn.sm{height:38px;padding:0 16px;font-size:14px}
+.hero{position:relative;text-align:center;padding:90px 0 0}
+.kick{display:inline-flex;gap:10px;align-items:center;font:500 13px 'JetBrains Mono',monospace;color:var(--text2);padding:6px 6px 6px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.kick b{font-weight:500;color:var(--on);background:var(--lime);padding:2px 10px;border-radius:999px}
+h1{font-size:132px;line-height:.9;letter-spacing:-0.055em;font-weight:800;margin:34px 0 30px}
+h1 .l2{display:block;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.08em}
+.lead{font-size:21px;line-height:1.5;color:var(--text2);max-width:700px;margin:0 auto 38px;text-wrap:pretty}
+.lead b{color:var(--text);font-weight:600}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.stage{perspective:1800px;margin:84px auto 0;max-width:1120px}
+.tilt{transform:rotateX(18deg) scale(.98);transform-origin:50% 0;border-radius:14px;box-shadow:0 0 0 1px rgba(103,232,249,.25),0 -20px 120px -10px oklch(0.82 0.14 210 / .35),0 60px 120px rgba(0,0,0,.6);animation:heroIn 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes heroIn{from{transform:rotateX(34deg) scale(.92) translateY(40px);opacity:0}to{transform:rotateX(18deg) scale(.98);opacity:1}}
+.fade{height:260px;margin-top:-260px;position:relative;background:linear-gradient(transparent,var(--bg) 85%)}
+.marq{display:flex;gap:44px;justify-content:center;flex-wrap:wrap;padding:30px 0;margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font:500 15px 'JetBrains Mono',monospace;color:var(--text3);position:relative}
+.marq span{display:flex;gap:10px;align-items:center}
+.marq i{color:var(--cyan)}
+.sec{position:relative;padding:130px 0 0}
+h2{font-size:72px;line-height:.95;letter-spacing:-0.045em;font-weight:800;margin:0 0 22px;max-width:1000px}
+h2 em{font-style:normal;color:var(--cyan)}
+.sub{color:var(--text2);font-size:19px;max-width:620px;margin:0}
+
+/* ---------- App window (animated, 12 s loop; end state = base style) ---------- */
+.awl{--aw-bg-app:#0B0E13;--aw-bg-side:#11161D;--aw-bg-content:#0F1318;--aw-bg-sel:#132A31;--aw-border:#1C232D;--aw-border-strong:#2A3340;--aw-text:#E6EBF2;--aw-text2:#A3AEBE;--aw-text3:#7D8899;--aw-accent:#22D3EE;--aw-accent-text:#67E8F9;--aw-accent-subtle:#10303A;--aw-ok:#34D399;--aw-off:#3A4452;--aw-t:12s;width:100%;aspect-ratio:16/10;display:grid;grid-template-rows:30px minmax(0,1fr) 26px;background:var(--aw-bg-app);color:var(--aw-text);font:400 12px/1.4 'Inter',system-ui,sans-serif;letter-spacing:0;border:1px solid var(--aw-border-strong);border-radius:12px;overflow:hidden;text-align:left}
+.awl-title{display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--aw-border);color:var(--aw-text3);font-size:11px}
+.awl-ctl{display:flex;gap:16px;font-size:12px}
+.awl-body{display:grid;grid-template-columns:46px 30% minmax(0,1fr);min-height:0}
+.awl-rail{display:flex;flex-direction:column;align-items:center;gap:14px;padding:12px 0;border-right:1px solid var(--aw-border);color:var(--aw-text3);font-size:16px}
+.awl-logo{width:26px;height:26px;border-radius:7px;display:block}
+.awl-on{color:var(--aw-accent)}
+.awl-sp{flex:1}
+.awl-side{background:var(--aw-bg-side);border-right:1px solid var(--aw-border);padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.awl-hd{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:11.5px}
+.awl-hdic{display:flex;gap:8px;align-items:center;color:var(--aw-text3);font-weight:400}
+.awl-swap{display:grid}
+.awl-swap > *{grid-area:1/1}
+.awl-crumb{display:flex;gap:5px;color:var(--aw-text2);font-size:11px;white-space:nowrap;overflow:hidden;margin-bottom:4px}
+.awl-crumb b{color:var(--aw-text);font-weight:600}
+.awl-filter{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.awl-follow{display:inline-grid;place-items:center;flex:none;width:22px;height:22px;border-radius:5px;border:1px solid var(--aw-accent);background:var(--aw-accent-subtle);color:var(--aw-accent-text);font-size:12px}
+.awl-field{flex:1;height:22px;display:flex;align-items:center;padding:0 9px;border:1px solid var(--aw-border-strong);border-radius:999px;color:var(--aw-text3);font-size:10.5px}
+.awl-list{display:flex;flex-direction:column}
+.awl-row{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:6px;align-items:center;padding:4px 6px;border-radius:5px;color:var(--aw-text);font-size:11.5px}
+.awl-fi{color:var(--aw-text3);font-size:13px}
+.awl-dir{color:var(--aw-accent)}
+.awl-size{color:var(--aw-text3);font-size:10.5px}
+.awl-rowsel{background:var(--aw-bg-sel)}
+.awl-th{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:6px;padding:0 6px;color:var(--aw-text3);font-size:10.5px;font-weight:500}
+.awl-sect{margin-top:14px;border-top:1px solid var(--aw-border);padding-top:10px;display:flex;flex-direction:column;gap:5px}
+.awl-secth{display:flex;justify-content:space-between;color:var(--aw-text3);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.awl-tun{display:grid;grid-template-columns:8px 18px minmax(0,1fr);gap:6px;align-items:center;padding:3px 6px;border-radius:5px;font-size:11px;color:var(--aw-text)}
+.awl-tunk{font:600 9.5px 'JetBrains Mono',monospace;color:var(--aw-accent-text);background:var(--aw-accent-subtle);border-radius:3px;text-align:center}
+.awl-tunr{font-family:'JetBrains Mono',monospace;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.awl-main{display:grid;grid-template-rows:34px minmax(0,1fr);min-width:0;background:var(--aw-bg-content)}
+.awl-tabs{display:flex;align-items:flex-end;gap:2px;padding:0 8px;background:var(--aw-bg-app);border-bottom:1px solid var(--aw-border);overflow:hidden}
+.awl-tab{display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:7px 7px 0 0;color:var(--aw-text2);font-size:11.5px;white-space:nowrap}
+.awl-tabon{background:var(--aw-bg-content);color:var(--aw-text);border:1px solid var(--aw-border);border-bottom-color:var(--aw-bg-content);margin-bottom:-1px}
+.awl-dot{width:6px;height:6px;border-radius:50%;background:var(--aw-ok)}
+.awl-term{padding:12px 14px;font:400 11.5px/1.6 'JetBrains Mono',Consolas,monospace;color:#C9D3E0;overflow:hidden}
+.awl-l{white-space:pre;min-height:1.6em}
+.awl-u{color:#34D399;font-weight:600}
+.awl-p{color:#60A5FA;font-weight:600}
+.awl-g{color:#34D399}
+.awl-m{color:#7D8899}
+.awl-typed{display:inline-block;vertical-align:bottom;overflow:hidden;white-space:pre;width:25ch}
+.awl-cur{display:inline-block;width:7px;height:13px;background:var(--aw-accent);vertical-align:-2px}
+.awl-status{display:flex;align-items:center;gap:14px;padding:0 12px;border-top:1px solid var(--aw-border);color:var(--aw-text2);font-size:10.5px}
+.awl-stun{display:flex;align-items:center;gap:5px;color:var(--aw-accent-text)}
+.awl-right{margin-left:auto}
+.awl-before{opacity:0;animation:awlBefore var(--aw-t) infinite}
+.awl-after{animation:awlAfter var(--aw-t) infinite}
+.awl-typed{animation:awlType var(--aw-t) infinite}
+.awl-curA{opacity:0;animation:awlBefore var(--aw-t) infinite}
+.awl-follow{animation:awlChip var(--aw-t) infinite}
+.awl-t2dot{animation:awlTunDot var(--aw-t) infinite}
+.awl-t2{animation:awlTunRow var(--aw-t) infinite}
+.awl-tbefore{opacity:0;animation:awlTunBefore var(--aw-t) infinite}
+.awl-tafter{animation:awlTunAfter var(--aw-t) infinite}
+.awl-blink{animation:awlBlink 1s steps(1) infinite}
+@keyframes awlBefore{0%,30%{opacity:1}31%,97%{opacity:0}98%,100%{opacity:1}}
+@keyframes awlAfter{0%,30%{opacity:0}31%,97%{opacity:1}98%,100%{opacity:0}}
+@keyframes awlType{0%,10%{width:0;animation-timing-function:steps(25,end)}26%,97%{width:25ch}98%,100%{width:0}}
+@keyframes awlChip{0%,31%{box-shadow:0 0 0 0 rgba(34,211,238,0)}35%{box-shadow:0 0 0 5px rgba(34,211,238,.35)}42%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+@keyframes awlTunDot{0%,58%{background:var(--aw-off)}60%,97%{background:var(--aw-ok)}100%{background:var(--aw-off)}}
+@keyframes awlTunRow{0%,58%{opacity:.45;background:transparent}60%{opacity:1;background:rgba(34,211,238,.18)}70%,97%{opacity:1;background:transparent}100%{opacity:.45}}
+@keyframes awlTunBefore{0%,59%{opacity:1}60%,97%{opacity:0}98%,100%{opacity:1}}
+@keyframes awlTunAfter{0%,59%{opacity:0}60%,97%{opacity:1}98%,100%{opacity:0}}
+@keyframes awlBlink{50%{opacity:0}}
+
+/* ---------- Feature tiles ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:56px}
+.tile{background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:26px;position:relative;overflow:hidden;min-height:270px;display:flex;flex-direction:column}
+.tile h3{font-size:25px;letter-spacing:-0.03em;font-weight:800;margin:auto 0 8px;line-height:1.1}
+.tile p{margin:0;color:var(--text2);font-size:15.5px;max-width:460px}
+.tile code{font:500 13.5px 'JetBrains Mono',monospace;color:var(--text)}
+.tbig{grid-column:span 4;grid-row:span 2;background:radial-gradient(80% 70% at 100% 0%,oklch(0.82 0.14 210 / .16),transparent 60%),var(--bg2)}
+.tvio{background:radial-gradient(90% 80% at 0% 100%,oklch(0.72 0.14 295 / .22),transparent 60%),var(--bg2)}
+.tw2{grid-column:span 2}
+.mini{background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;font:400 12.5px 'JetBrains Mono',monospace;color:var(--text2);margin-bottom:20px}
+.mr{display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;border-radius:6px;margin:0 -6px;padding:1px 6px}
+.md{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+.mk{font:600 10.5px 'JetBrains Mono',monospace;color:var(--on);background:var(--cyan);border-radius:4px;padding:0 5px;flex:none}
+.mn{color:var(--text);flex:none}
+.mc{color:var(--text3);overflow:hidden;text-overflow:ellipsis}
+.mok{color:var(--ok)}
+.typ{display:inline-block;vertical-align:bottom;overflow:hidden;white-space:pre}
+.cur{display:inline-block;width:7px;height:13px;background:var(--cyan);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.bento .an{animation-play-state:paused}
+.bento.play .an{animation-play-state:running}
+.panes{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);align-items:start;margin:6px 0 26px;font:400 13px 'JetBrains Mono',monospace}
+.pane{background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;color:var(--text2);min-height:300px}
+.ph{color:var(--text3);font-size:11.5px;margin-bottom:4px}
+.psel{background:oklch(0.82 0.14 210 / .14);color:var(--text);border-radius:6px;margin:0 -6px;padding:2px 6px}
+.pnew{color:var(--text);animation:fNew 8s infinite both}
+.arrow{text-align:center;color:var(--cyan);font-size:20px;padding-top:130px}
+.ghost{position:absolute;top:48px;left:6%;display:flex;gap:6px;align-items:center;padding:6px 12px;border-radius:999px;background:var(--cyan);color:var(--on);font:600 12px 'JetBrains Mono',monospace;box-shadow:0 10px 30px -6px oklch(0.82 0.14 210 / .7);opacity:0;animation:fGhost 8s infinite both}
+.prog{margin-top:auto;height:6px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
+.progb{height:100%;width:100%;background:linear-gradient(90deg,var(--cyan),var(--violet));animation:fProg 8s infinite both}
+.plab{display:flex;justify-content:space-between;font-size:11px;color:var(--text3)}
+@keyframes fGhost{0%,8%{opacity:0;left:6%;transform:scale(.9)}12%{opacity:1;left:6%;transform:scale(1)}40%{opacity:1;left:60%}46%,100%{opacity:0;left:60%}}
+@keyframes fNew{0%,44%{opacity:0;transform:translateY(-4px)}48%,94%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes fProg{0%,46%{width:0}72%,94%{width:100%}100%{width:0}}
+.sfield{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:4px 8px;color:var(--text)}
+.sfield i{color:var(--text3)}
+.styp{width:2ch;animation:sType 7s infinite both}
+.sdim{animation:sDim 7s infinite both}
+.sfold{color:var(--text3)}
+@keyframes sType{0%,15%{width:0;animation-timing-function:steps(2,end)}28%,92%{width:2ch}100%{width:0}}
+@keyframes sDim{0%,30%{opacity:1}36%,92%{opacity:.22}100%{opacity:1}}
+.shtabs{display:flex;gap:4px;font-size:11px}
+.sht{padding:3px 8px;border-radius:6px;color:var(--text3)}
+.sh1{animation:shTab 9s infinite both}
+.sh2{animation:shTab 9s -6s infinite both}
+.sh3{animation:shTab 9s -3s infinite both}
+.shp{display:grid}
+.shp > span{grid-area:1/1;opacity:0}
+.shp1{animation:shLine 9s infinite both}
+.shp2{animation:shLine 9s -6s infinite both}
+.shp3{animation:shLine 9s -3s infinite both}
+@keyframes shTab{0%,31%{background:oklch(0.72 0.14 295 / .3);color:var(--text)}34%,100%{background:transparent;color:var(--text3)}}
+@keyframes shLine{0%,31%{opacity:1}34%,100%{opacity:0}}
+.tdot{animation:tOn 8s infinite both}
+.tdot.d2{animation-delay:.7s}
+.tdot.d3{animation-delay:1.4s}
+.trow{animation:tRow 8s infinite both}
+.trow.d2{animation-delay:.7s}
+.trow.d3{animation-delay:1.4s}
+@keyframes tOn{0%,14%{background:var(--off)}18%,92%{background:var(--ok)}100%{background:var(--off)}}
+@keyframes tRow{0%,14%{opacity:.4}18%{opacity:1;background:oklch(0.82 0.14 210 / .16)}26%,92%{opacity:1;background:transparent}100%{opacity:.4}}
+.snpick{animation:snPick 8s infinite both}
+.sntyp{width:33ch;animation:snType 8s infinite both}
+.snout{animation:snOut 8s infinite both}
+.snterm{border-top:1px dashed var(--line);padding-top:6px;margin-top:2px;color:var(--text)}
+@keyframes snPick{0%,8%{background:transparent}12%,24%{background:oklch(0.72 0.14 295 / .28)}30%,100%{background:transparent}}
+@keyframes snType{0%,24%{width:0;animation-timing-function:steps(33,end)}50%,92%{width:33ch}100%{width:0}}
+@keyframes snOut{0%,54%{opacity:0}58%,92%{opacity:1}100%{opacity:0}}
+.multi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:20px}
+.mt{background:var(--bg3);border:1px solid oklch(0.72 0.14 295 / .45);border-radius:10px;padding:8px 9px;font:400 11.5px 'JetBrains Mono',monospace;color:var(--text2);display:flex;flex-direction:column;gap:3px;min-width:0;min-height:76px}
+.mt b{font-weight:500;color:var(--text);font-size:11px}
+.mtyp{width:10ch;animation:mType 7s infinite both}
+.mout{animation:mOut 7s infinite both}
+@keyframes mType{0%,12%{width:0;animation-timing-function:steps(10,end)}38%,92%{width:10ch}100%{width:0}}
+@keyframes mOut{0%,44%{opacity:0}48%,92%{opacity:1}100%{opacity:0}}
+.keys{display:flex;gap:6px;margin-bottom:12px}
+.keys kbd{font:600 14px 'JetBrains Mono',monospace;padding:7px 11px;border-radius:9px;background:#141A22;border:1px solid rgba(255,255,255,.12);border-bottom-width:3px;color:var(--text);animation:kPress 7s infinite both}
+.keys kbd.k2{animation-delay:.15s}
+.keys kbd.k3{animation-delay:.3s}
+@keyframes kPress{0%,8%{transform:none;border-bottom-width:3px;background:#141A22}10%,22%{transform:translateY(2px);border-bottom-width:1px;background:oklch(0.82 0.14 210 / .25)}25%,100%{transform:none;border-bottom-width:3px;background:#141A22}}
+.pal{animation:pOpen 7s infinite both;margin-bottom:16px}
+.ptyp{width:3ch;animation:pType 7s infinite both}
+.pres{animation:pRes 7s infinite both}
+.phl{background:oklch(0.82 0.14 210 / .16);color:var(--text)}
+@keyframes pOpen{0%,24%{opacity:0;transform:translateY(6px) scale(.98)}28%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes pType{0%,30%{width:0;animation-timing-function:steps(3,end)}42%,92%{width:3ch}100%{width:0}}
+@keyframes pRes{0%,44%{opacity:0}48%,92%{opacity:1}100%{opacity:0}}
+.agbtns{display:flex;gap:6px;margin-top:4px}
+.agb{font:500 11px 'JetBrains Mono',monospace;padding:3px 9px;border-radius:6px;border:1px solid var(--line);color:var(--text2)}
+.agok{animation:agOk 8s infinite both}
+.agdone{animation:agDone 8s infinite both}
+@keyframes agOk{0%,30%{background:transparent;color:var(--text2);border-color:var(--line)}34%,92%{background:var(--cyan);color:var(--on);border-color:var(--cyan)}100%{background:transparent}}
+@keyframes agDone{0%,38%{opacity:0}42%,92%{opacity:1}100%{opacity:0}}
+.vrow{animation:vIn 8s infinite both}
+.vrow.d2{animation-delay:.3s}
+.vrow.d3{animation-delay:.6s}
+.vlock{display:grid;color:var(--cyan)}
+.vlock > i{grid-area:1/1}
+.vopen{animation:vOpen 8s infinite both}
+.vshut{animation:vShut 8s infinite both}
+@keyframes vIn{0%,8%{opacity:0;transform:translateX(-6px)}14%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes vOpen{0%,40%{opacity:1}44%,100%{opacity:0}}
+@keyframes vShut{0%,40%{opacity:0}44%,92%{opacity:1}100%{opacity:0}}
+.also{margin-top:16px;border:1px solid var(--line);border-radius:22px;padding:26px 28px;display:flex;gap:22px;align-items:baseline;flex-wrap:wrap;background:var(--bg2)}
+.alsoh{font-weight:800;font-size:19px;letter-spacing:-0.02em;flex:none}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:14.5px;color:var(--text2);padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02)}
+.dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
+.os{border-radius:22px;padding:34px;border:1px solid var(--line);background:var(--bg2);display:flex;flex-direction:column;gap:10px;min-height:250px}
+.osn{font-size:44px;font-weight:800;letter-spacing:-0.04em;line-height:1}
+.osf{font:400 13px 'JetBrains Mono',monospace;color:var(--text3)}
+.os .btn{margin-top:auto;align-self:flex-start}
+.oscur{background:linear-gradient(160deg,oklch(0.82 0.14 210 / .22),oklch(0.72 0.14 295 / .14)),var(--bg2);border-color:oklch(0.82 0.14 210 / .5)}
+.fin{text-align:center;padding:150px 0 70px}
+.fin h2{font-size:104px;margin:0 auto 34px}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;display:flex;gap:24px;font:400 12.5px 'JetBrains Mono',monospace;color:var(--text3)}
+footer a{color:var(--text3)}
+.foot-r{margin-left:auto;display:flex;gap:22px}
+@media (max-width:900px){h1{font-size:64px}h2,.fin h2{font-size:44px}.bento{grid-template-columns:minmax(0,1fr)}.tbig,.tw2{grid-column:auto}.dl{grid-template-columns:minmax(0,1fr)}.navlinks{display:none}.pane{min-height:190px}.arrow{padding-top:70px}}
+@media (prefers-reduced-motion: reduce){.sg:not(.force-motion) *{animation:none !important}}
+.motion-toggle{position:fixed;right:20px;bottom:20px;z-index:10;display:none;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:#0E1218;color:#F1F4F8;font:600 14px 'Bricolage Grotesque',system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion: reduce){.motion-toggle{display:inline-flex}}
+</style>
+</head>
+<body>
+<div class="sg">
+  <div class="aurora"></div>
+  <div class="grain"></div>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="#"><img src="./assets/shellvia-icon.svg" alt="" />Shellvia</a>
+      <div class="navlinks"><a href="#">Produit</a><a href="#">Télécharger</a><a href="#">FAQ</a></div>
+      <div class="navend"><span>FR / EN</span><a class="btn glass sm" href="#">Télécharger</a></div>
+    </nav>
+
+    <header class="hero">
+      <span class="kick">Client SSH pour Windows, macOS et Linux <b>gratuit</b></span>
+      <h1>Tous vos serveurs.<span class="l2">Une seule app.</span></h1>
+      <p class="lead"><b>Sessions SSH, terminaux locaux, fichiers SFTP, tunnels, snippets</b> : tout votre travail sur serveurs dans une app rapide, pensée pour le clavier.</p>
+      <div class="ctas"><a class="btn pri" href="#"><i class="icon-download"></i>Télécharger pour Windows</a><a class="btn glass" href="#">Voir les fonctions</a></div>
+      <div class="stage"><div class="tilt">
+        <div class="awl">
+          <div class="awl-title"><span>Shellvia</span><span class="awl-ctl"><span>—</span><span>▢</span><span>✕</span></span></div>
+          <div class="awl-body">
+            <div class="awl-rail">
+              <img class="awl-logo" src="./assets/shellvia-icon.svg" alt="" />
+              <i class="icon-house"></i><i class="icon-server"></i><i class="icon-folder awl-on"></i><i class="icon-square-code"></i><i class="icon-waypoints"></i>
+              <span class="awl-sp"></span>
+              <i class="icon-key-round"></i><i class="icon-settings"></i>
+            </div>
+            <div class="awl-side">
+              <div class="awl-hd"><span>Fichiers · web-01</span><span class="awl-hdic"><i class="icon-upload"></i><i class="icon-folder-plus"></i><i class="icon-refresh-cw"></i><i class="icon-columns-2"></i></span></div>
+              <div class="awl-swap">
+                <div class="awl-crumb awl-before"><span>/</span><span>›</span><b>root</b></div>
+                <div class="awl-crumb awl-after"><span>/</span><span>›</span><span>var</span><span>›</span><span>www</span><span>›</span><b>app</b></div>
+              </div>
+              <div class="awl-filter"><i class="awl-follow icon-locate-fixed" title="Suivre le terminal"></i><span class="awl-field">Filtrer</span></div>
+              <div class="awl-th"><span></span><span>Nom</span><span>Taille</span></div>
+              <div class="awl-swap">
+                <div class="awl-list awl-before">
+                  <div class="awl-row"><i class="awl-fi awl-dir icon-folder"></i><span>.ssh</span><span class="awl-size"></span></div>
+                  <div class="awl-row"><i class="awl-fi awl-dir icon-folder"></i><span>backups</span><span class="awl-size"></span></div>
+                  <div class="awl-row"><i class="awl-fi icon-file"></i><span>.bashrc</span><span class="awl-size">3,1 Kio</span></div>
+                  <div class="awl-row"><i class="awl-fi icon-file-code"></i><span>deploy.sh</span><span class="awl-size">912 o</span></div>
+                </div>
+                <div class="awl-list awl-after">
+                  <div class="awl-row"><i class="awl-fi awl-dir icon-folder"></i><span>assets</span><span class="awl-size"></span></div>
+                  <div class="awl-row"><i class="awl-fi awl-dir icon-folder"></i><span>logs</span><span class="awl-size"></span></div>
+                  <div class="awl-row awl-rowsel"><i class="awl-fi icon-file-code"></i><span>index.html</span><span class="awl-size">1,8 Kio</span></div>
+                  <div class="awl-row"><i class="awl-fi icon-file-text"></i><span>robots.txt</span><span class="awl-size">612 o</span></div>
+                  <div class="awl-row"><i class="awl-fi icon-file"></i><span>.env.production</span><span class="awl-size">284 o</span></div>
+                </div>
+              </div>
+              <div class="awl-sect">
+                <div class="awl-secth"><span>Tunnels</span><span class="awl-swap"><span class="awl-tbefore">1 actif</span><span class="awl-tafter">2 actifs</span></span></div>
+                <div class="awl-tun"><span class="awl-dot"></span><span class="awl-tunk">L</span><span class="awl-tunr">5432 → db-01:5432</span></div>
+                <div class="awl-tun awl-t2"><span class="awl-dot awl-t2dot"></span><span class="awl-tunk">D</span><span class="awl-tunr">1080 · SOCKS5</span></div>
+              </div>
+            </div>
+            <div class="awl-main">
+              <div class="awl-tabs">
+                <span class="awl-tab awl-tabon"><span class="awl-dot"></span>web-01</span>
+                <span class="awl-tab"><span class="awl-dot"></span>db-01</span>
+                <span class="awl-tab"><i class="icon-terminal"></i>PowerShell</span>
+                <span class="awl-tab"><i class="icon-terminal"></i>Ubuntu (WSL)</span>
+              </div>
+              <div class="awl-term">
+                <div class="awl-l"><span class="awl-u">root@web-01</span>:<span class="awl-p">~</span># uptime</div>
+                <div class="awl-l awl-m"> 14:02:11 up 41 days,  3:17,  1 user,  load average: 0.21, 0.18, 0.12</div>
+                <div class="awl-l"><span class="awl-u">root@web-01</span>:<span class="awl-p">~</span># systemctl is-active nginx</div>
+                <div class="awl-l awl-g">active</div>
+                <div class="awl-l"><span class="awl-u">root@web-01</span>:<span class="awl-p">~</span># <span class="awl-typed">cd /var/www/app &amp;&amp; ls -la</span><span class="awl-cur awl-curA"></span></div>
+                <div class="awl-after">
+                  <div class="awl-l">total 28</div>
+                  <div class="awl-l">drwxr-xr-x 4 www-data www-data 4096 Nov  5 09:12 <span class="awl-p">.</span></div>
+                  <div class="awl-l">drwxr-xr-x 3 root     root     4096 Sep 28 10:40 <span class="awl-p">..</span></div>
+                  <div class="awl-l">-rw------- 1 www-data www-data  284 Nov  2 16:20 .env.production</div>
+                  <div class="awl-l">drwxr-xr-x 2 www-data www-data 4096 Nov  5 09:12 <span class="awl-p">assets</span></div>
+                  <div class="awl-l">-rw-r--r-- 1 www-data www-data 1843 Nov  4 18:30 index.html</div>
+                  <div class="awl-l">drwxr-xr-x 2 www-data www-data 4096 Nov  3 11:02 <span class="awl-p">logs</span></div>
+                  <div class="awl-l">-rw-r--r-- 1 www-data www-data  612 Oct 30 08:55 robots.txt</div>
+                  <div class="awl-l"><span class="awl-u">root@web-01</span>:<span class="awl-p">/var/www/app</span># <span class="awl-cur awl-blink"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="awl-status"><span class="awl-dot"></span><span>Connecté</span><span>root@10.0.0.1:22</span><span class="awl-stun"><i class="icon-waypoints"></i><span class="awl-swap"><span class="awl-tbefore">1 tunnel actif</span><span class="awl-tafter">2 tunnels actifs</span></span></span><span class="awl-right">Transferts</span></div>
+        </div>
+      </div></div>
+      <div class="fade"></div>
+    </header>
+
+    <div class="marq"><span><i class="icon-terminal"></i>PowerShell</span><span><i class="icon-terminal"></i>bash</span><span><i class="icon-terminal"></i>zsh</span><span><i class="icon-terminal"></i>fish</span><span><i class="icon-terminal"></i>WSL</span><span><i class="icon-terminal"></i>cmd</span><span><i class="icon-server"></i>OpenSSH</span><span><i class="icon-folder"></i>SFTP</span><span><i class="icon-waypoints"></i>SOCKS5</span></div>
+
+    <section class="sec">
+      <h2>Tout ce qu'il faut. <em>Au même endroit.</em></h2>
+      <p class="sub">Fini de jongler entre un terminal, un client SFTP, un gestionnaire de tunnels et un fichier de commandes.</p>
+      <div class="bento" id="bento">
+        <div class="tile tbig">
+          <div class="panes">
+            <div class="pane"><span class="ph">Ce PC · C:\Projets\app</span><span class="psel">dist/</span><span class="psel">nginx.conf</span><span>README.md</span><span>package.json</span></div>
+            <span class="arrow"><i class="icon-arrow-right"></i></span>
+            <div class="pane"><span class="ph">web-01 · /var/www/app</span><span class="pnew an">dist/</span><span class="pnew an">nginx.conf</span><span>assets/</span><span>index.html</span><div class="prog"><div class="progb an"></div></div><span class="plab"><span>Transferts</span><span>2 / 2</span></span></div>
+            <span class="ghost an"><i class="icon-files"></i>2 éléments</span>
+          </div>
+          <h3>Glissez, c'est transféré.</h3>
+          <p>Double panneau local et distant, multi-sélection, file de transferts. Le panneau Fichiers suit le dossier de votre shell, distant ou local. Renommer, supprimer, droits <code>chmod</code> : sans quitter l'app.</p>
+        </div>
+
+        <div class="tile tw2">
+          <div class="mini">
+            <span class="sfield"><i class="icon-search"></i><span class="typ styp an">db</span><span class="cur"></span></span>
+            <span class="mr sfold"><i class="icon-folder"></i>Prod</span>
+            <span class="mr sdim an">&emsp;web-01</span>
+            <span class="mr"><span class="mn">&emsp;db-01</span></span>
+            <span class="mr sdim an">&emsp;api-02</span>
+          </div>
+          <h3>Sessions organisées</h3><p>Dossiers, favoris, recherche. Import de <code>~/.ssh/config</code>, rebond par un bastion.</p>
+        </div>
+        <div class="tile tw2 tvio">
+          <div class="mini">
+            <span class="shtabs"><span class="sht sh1 an">PowerShell</span><span class="sht sh2 an">zsh</span><span class="sht sh3 an">WSL</span></span>
+            <span class="shp"><span class="shp1 an">PS C:\Users\ana&gt; git status</span><span class="shp2 an">ana@mac ~ % brew upgrade</span><span class="shp3 an">ana@ubuntu:~$ make test</span></span>
+          </div>
+          <h3>Vos shells locaux aussi</h3><p>PowerShell, WSL, zsh… dans les mêmes onglets et volets divisés.</p>
+        </div>
+
+        <div class="tile tw2">
+          <div class="mini">
+            <span class="mr trow an"><span class="md tdot an"></span><span class="mk">L</span><span class="mn">5432 → db-01:5432</span></span>
+            <span class="mr trow d2 an"><span class="md tdot d2 an"></span><span class="mk">D</span><span class="mn">1080 · SOCKS5</span></span>
+            <span class="mr trow d3 an"><span class="md tdot d3 an"></span><span class="mk">R</span><span class="mn">8080 ← localhost:3000</span></span>
+          </div>
+          <h3>Tunnels en un clic</h3><p>Redirections locales, distantes et SOCKS5, suivies en direct.</p>
+        </div>
+        <div class="tile tw2 tvio">
+          <div class="mini">
+            <span class="mr snpick an"><span class="mn">deploy</span><span class="mc">git pull &amp;&amp; systemctl restart app</span></span>
+            <span class="mr"><span class="mn">logs</span><span class="mc">tail -f /var/log/nginx/error.log</span></span>
+            <span class="mr snterm"><span>$</span><span class="typ sntyp an">git pull &amp;&amp; systemctl restart app</span></span>
+            <span class="mr mok snout an">Already up to date.</span>
+          </div>
+          <h3>Snippets</h3><p>Vos commandes enregistrées, envoyées au terminal en un geste.</p>
+        </div>
+        <div class="tile tw2">
+          <div class="multi">
+            <div class="mt"><b>web-01</b><span>$ <span class="typ mtyp an">apt update</span></span><span class="mok mout an">Fait.</span></div>
+            <div class="mt"><b>web-02</b><span>$ <span class="typ mtyp an">apt update</span></span><span class="mok mout an">Fait.</span></div>
+            <div class="mt"><b>web-03</b><span>$ <span class="typ mtyp an">apt update</span></span><span class="mok mout an">Fait.</span></div>
+          </div>
+          <h3>Multi-exécution</h3><p>Une saisie, envoyée à plusieurs terminaux à la fois.</p>
+        </div>
+
+        <div class="tile tw2">
+          <div class="keys"><kbd class="an">Ctrl</kbd><kbd class="k2 an">Maj</kbd><kbd class="k3 an">K</kbd></div>
+          <div class="mini pal an">
+            <span class="sfield"><i class="icon-command"></i><span class="typ ptyp an">web</span></span>
+            <span class="mr phl pres an"><i class="icon-server"></i>Se connecter à web-01</span>
+            <span class="mr pres an"><i class="icon-server"></i>Se connecter à web-02</span>
+          </div>
+          <h3>Tout au clavier</h3><p>Palette de commandes et connexion rapide <code>user@hôte:port</code>.</p>
+        </div>
+        <div class="tile tw2 tvio">
+          <div class="mini">
+            <span class="mr"><i class="icon-key-round"></i><span class="mn">web-01</span><span class="mc">demande id_ed25519</span></span>
+            <span class="agbtns"><span class="agb">Refuser</span><span class="agb agok an">Autoriser</span></span>
+            <span class="mr mok agdone an">✓ Signature accordée</span>
+          </div>
+          <h3>Clés et agent SSH</h3><p>Bibliothèque de clés et agent intégré qui demande votre accord.</p>
+        </div>
+        <div class="tile tw2">
+          <div class="mini">
+            <span class="mr"><span class="vlock"><i class="icon-lock-open vopen an"></i><i class="icon-lock vshut an"></i></span><span class="mn">Coffre local</span><span class="mc">chiffré</span></span>
+            <span class="mr vrow an"><span class="mn">web-01</span><span class="mc">••••••••</span></span>
+            <span class="mr vrow d2 an"><span class="mn">db-01</span><span class="mc">id_ed25519</span></span>
+            <span class="mr vrow d3 an"><span class="mn">api-02</span><span class="mc">••••••••</span></span>
+          </div>
+          <h3>Vos secrets restent chez vous</h3><p>Coffre chiffré local. Aucun compte, aucun cloud.</p>
+        </div>
+      </div>
+      <div class="also">
+        <span class="alsoh">Et aussi</span>
+        <div class="chips">
+          <span class="chip">Onglets et volets divisés</span>
+          <span class="chip">Import de known_hosts</span>
+          <span class="chip">Empreintes vérifiées</span>
+          <span class="chip">Test de connexion</span>
+          <span class="chip">Corbeille pour les fichiers locaux</span>
+          <span class="chip">Thèmes sombre et clair</span>
+          <span class="chip">Densité compacte ou confortable</span>
+          <span class="chip">Mises à jour signées</span>
+          <span class="chip">Français et anglais</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2>Gratuit. <em>Sans compte.</em></h2>
+      <p class="sub">Téléchargez, installez, connectez-vous. Les mises à jour suivent automatiquement.</p>
+      <div class="dl">
+        <div class="os oscur"><span class="osn">Windows</span><span class="osf">.exe · .msi · Windows 10/11</span><a class="btn pri" href="#"><i class="icon-download"></i>Télécharger</a></div>
+        <div class="os"><span class="osn">macOS</span><span class="osf">.dmg universel · macOS 11+</span><a class="btn glass" href="#"><i class="icon-download"></i>Télécharger</a></div>
+        <div class="os"><span class="osn">Linux</span><span class="osf">.AppImage · .deb · .rpm</span><a class="btn glass" href="#"><i class="icon-download"></i>Télécharger</a></div>
+      </div>
+    </section>
+
+    <div class="fin">
+      <h2>Connectez-vous.</h2>
+      <a class="btn pri" href="#"><i class="icon-download"></i>Télécharger Shellvia</a>
+    </div>
+    <footer><span>© 2026 Shellvia</span><span class="foot-r"><a href="#">Notes de version</a><a href="#">Confidentialité</a><a href="#">Contact</a></span></footer>
+  </div>
+</div>
+<button class="motion-toggle" id="motion-toggle" type="button">Votre système réduit les animations · Les lire quand même</button>
+<script>
+  (function () {
+    var root = document.querySelector('.sg');
+    var toggle = document.getElementById('motion-toggle');
+    toggle.addEventListener('click', function () {
+      var on = root.classList.toggle('force-motion');
+      toggle.textContent = on ? 'Arrêter les animations' : 'Votre système réduit les animations · Les lire quand même';
+    });
+  })();
+  (function () {
+    var grid = document.getElementById('bento');
+    if (!('IntersectionObserver' in window)) { grid.classList.add('play'); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { grid.classList.add('play'); io.disconnect(); }
+    }, { threshold: 0.15 });
+    io.observe(grid);
+  })();
+</script>
+</body>
+</html>
