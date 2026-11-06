@@ -1,0 +1,18 @@
+:root {
+  --bg: #07090d;
+  --bg2: #0e1218;
+  --bg3: #0a0d12;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f1f4f8;
+  --text2: #a8b2c1;
+  --text3: #6e7889;
+  --cyan: oklch(0.82 0.14 210);
+  --violet: oklch(0.72 0.14 295);
+  --lime: oklch(0.86 0.14 135);
+  --ok: #34d399;
+  --off: #3a4452;
+  --on: #04161c;
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-ui: "Inter Variable", system-ui, sans-serif;
+}
