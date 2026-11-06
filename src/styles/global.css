@@ -19,8 +19,12 @@ a:hover {
   color: #cffafe;
 }
 
-.shell-wrap {
+/* Full-width ancestor: clips the wide hero aurora without a scroll container. */
+.page-clip {
   overflow-x: clip;
+}
+
+.shell-wrap {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 40px;

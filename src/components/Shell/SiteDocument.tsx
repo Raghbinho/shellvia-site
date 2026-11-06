@@ -9,14 +9,22 @@ import { Analytics } from "./Analytics";
 import { Footer } from "./Footer";
 import { ShellHeader } from "./ShellHeader";
 
-export function SiteDocument({ lang, children }: { lang: Lang; children: ReactNode }) {
+export function SiteDocument({
+  lang,
+  children,
+}: {
+  lang: Lang;
+  children: ReactNode;
+}) {
   return (
     <html lang={lang}>
       <body>
-        <ShellHeader lang={lang} />
-        <main className="shell-wrap">{children}</main>
-        <div className="shell-wrap">
-          <Footer lang={lang} />
+        <div className="page-clip">
+          <ShellHeader lang={lang} />
+          <main className="shell-wrap">{children}</main>
+          <div className="shell-wrap">
+            <Footer lang={lang} />
+          </div>
         </div>
         <Analytics />
       </body>
