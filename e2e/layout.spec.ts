@@ -1,6 +1,17 @@
 import { expect, test } from "./fixtures";
 
-for (const path of ["/", "/fr/", "/download/", "/fr/telecharger/"]) {
+const ALL_PATHS = [
+  "/",
+  "/fr/",
+  "/download/",
+  "/fr/telecharger/",
+  "/legal/",
+  "/fr/mentions-legales/",
+  "/privacy/",
+  "/fr/confidentialite/",
+];
+
+for (const path of ALL_PATHS) {
   test(`${path} main title fits at 360px`, async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto(path);
@@ -21,4 +32,19 @@ for (const path of ["/", "/fr/", "/download/", "/fr/telecharger/"]) {
       expect(w).toBeLessThanOrEqual(width);
     });
   }
+}
+
+const TITLES = [
+  { path: "/legal/", h1: "Legal notice" },
+  { path: "/privacy/", h1: "Privacy" },
+  { path: "/fr/mentions-legales/", h1: "Mentions légales" },
+  { path: "/fr/confidentialite/", h1: "Confidentialité" },
+];
+
+for (const { path, h1 } of TITLES) {
+  test(`${path} shows its title and content`, async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator("main h1")).toHaveText(h1);
+    await expect(page.locator("main h2").first()).toBeVisible();
+  });
 }

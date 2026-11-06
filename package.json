@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && node scripts/restore-404.mjs",
+    "build:prod": "pnpm build && node scripts/check-placeholders.mjs out",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

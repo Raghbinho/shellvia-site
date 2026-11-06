@@ -235,4 +235,33 @@ export const fr: Dict = {
       { title: "Vos secrets restent chez vous", text: "Identifiants chiffrés sur votre machine." },
     ],
   },
+  legal: {
+    publisherTitle: "Éditeur",
+    publisherName: "Nom :",
+    publisherAddress: "Adresse :",
+    contactTitle: "Contact",
+    contactText: "Pour joindre l'éditeur, écrivez à",
+    hostTitle: "Hébergeur",
+    hostName: "Nom de l'hébergeur :",
+    hostAddress: "Adresse de l'hébergeur :",
+    contentTitle: "Contenu",
+    contentText:
+      "Les textes, visuels et le code de ce site sont la propriété de l'éditeur. Shellvia et son logo sont des marques de l'éditeur. Toute reproduction sans autorisation est interdite.",
+  },
+  privacy: {
+    intro: "Cette page explique ce que ce site et l'application Shellvia font de vos données. En bref : très peu.",
+    siteTitle: "Ce site web",
+    siteNoAccount: "Il n'y a aucun compte à créer et le site ne dépose aucun cookie.",
+    measureTitle: "Mesure d'audience",
+    measureText:
+      "Nous utilisons Umami Cloud pour compter les pages vues, les sites référents, les pays et les types d'appareil. Cette mesure n'utilise aucun cookie ni identifiant personnel, et ne vous suit pas d'un site à l'autre.",
+    downloadsTitle: "Téléchargements",
+    downloadsText:
+      "Les installeurs sont servis par GitHub. Quand vous en téléchargez un, GitHub reçoit votre requête selon sa propre politique de confidentialité.",
+    appTitle: "L'application Shellvia",
+    appText:
+      "L'application ne collecte rien : ni télémétrie, ni statistiques d'usage. Vos hôtes, clés et identifiants restent chiffrés sur votre machine.",
+    contactTitle: "Questions",
+    contactText: "Pour toute question sur vos données, écrivez à",
+  },
 };

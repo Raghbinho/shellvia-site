@@ -235,4 +235,33 @@ export const en: Dict = {
       { title: "Your secrets stay with you", text: "Credentials encrypted on your machine." },
     ],
   },
+  legal: {
+    publisherTitle: "Publisher",
+    publisherName: "Name:",
+    publisherAddress: "Address:",
+    contactTitle: "Contact",
+    contactText: "To reach the publisher, write to",
+    hostTitle: "Host",
+    hostName: "Host name:",
+    hostAddress: "Host address:",
+    contentTitle: "Content",
+    contentText:
+      "The texts, graphics and code of this site are the property of the publisher. Shellvia and its logo are trademarks of the publisher. Any reproduction without permission is prohibited.",
+  },
+  privacy: {
+    intro: "This page explains what this site and the Shellvia app do with your data. In short: very little.",
+    siteTitle: "This website",
+    siteNoAccount: "There is no account to create and the site sets no cookie.",
+    measureTitle: "Audience measurement",
+    measureText:
+      "We use Umami Cloud to count page views, referrers, countries and device types. This measurement uses no cookie and no personal identifier, and it does not follow you from one site to another.",
+    downloadsTitle: "Downloads",
+    downloadsText:
+      "Installers are served by GitHub. When you download one, GitHub receives your request under its own privacy policy.",
+    appTitle: "The Shellvia app",
+    appText:
+      "The app collects nothing: no telemetry, no usage statistics. Your hosts, keys and credentials stay encrypted on your machine.",
+    contactTitle: "Questions",
+    contactText: "For any question about your data, write to",
+  },
 };

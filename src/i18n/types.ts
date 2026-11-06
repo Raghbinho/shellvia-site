@@ -139,4 +139,29 @@ export interface Dict {
     allReleases: string;
     why: Array<{ title: string; text: string }>;
   };
+  legal: {
+    publisherTitle: string;
+    publisherName: string;
+    publisherAddress: string;
+    contactTitle: string;
+    contactText: string;
+    hostTitle: string;
+    hostName: string;
+    hostAddress: string;
+    contentTitle: string;
+    contentText: string;
+  };
+  privacy: {
+    intro: string;
+    siteTitle: string;
+    siteNoAccount: string;
+    measureTitle: string;
+    measureText: string;
+    downloadsTitle: string;
+    downloadsText: string;
+    appTitle: string;
+    appText: string;
+    contactTitle: string;
+    contactText: string;
+  };
 }

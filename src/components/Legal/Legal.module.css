@@ -1,0 +1,7 @@
+.prose { max-width: 720px; padding: 56px 0 72px; color: var(--text2); line-height: 1.7; }
+.prose h1 { font: 700 clamp(30px, 5vw, 44px) var(--font-display); color: var(--text); margin: 0 0 28px; }
+.prose h2 { font: 600 20px var(--font-display); color: var(--text); margin: 36px 0 10px; }
+.prose p { margin: 0 0 12px; overflow-wrap: anywhere; }
+.prose a { color: var(--cyan); }
+.prose dt { font: 500 13px var(--font-mono); color: var(--text3); margin-top: 10px; }
+.prose dd { margin: 2px 0 0; overflow-wrap: anywhere; }
