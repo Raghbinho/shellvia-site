@@ -1,4 +1,3 @@
-import { readFileSync } from "node:fs";
 import { expect, test } from "./fixtures";
 
 const PATHS = [
@@ -26,13 +25,6 @@ test("robots.txt names the sitemap", async ({ request }) => {
   const response = await request.get("/robots.txt");
   expect(response.status()).toBe(200);
   expect(await response.text()).toContain("Sitemap: https://shellvia.com/sitemap.xml");
-});
-
-test("Hostinger .htaccess is shipped in the build", () => {
-  const htaccess = readFileSync("out/.htaccess", "utf8");
-  expect(htaccess).toContain("https://shellvia.com/fr/$1");
-  expect(htaccess).toContain('<Files ".ftp-deploy-sync-state.json">');
-  expect(htaccess).toContain('Header set Cache-Control "no-cache"');
 });
 
 for (const path of PATHS) {

@@ -38,20 +38,24 @@ jobs:
         env:
           NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
       - run: pnpm check:links
-      - name: Check FTP_DIR ends with a slash
+      # Upload to the VPS: rsync over SSH with a key that the server limits to
+      # write-only rsync into /var/www/shellvia (deploy/setup-vps.sh). The host
+      # key is pinned in deploy/known_hosts.
+      - name: Upload to the VPS
         env:
-          FTP_DIR: ${{ secrets.FTP_DIR }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_TARGET: deploy@72.61.199.143
         run: |
-          case "$FTP_DIR" in
-            */) ;;
-            *) echo "::error::The FTP_DIR secret must end with a trailing slash"; exit 1 ;;
-          esac
-      - uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          security: strict
-          local-dir: ./out/
-          server-dir: ${{ secrets.FTP_DIR }}
+          if [ -z "$DEPLOY_SSH_KEY" ]; then
+            echo "::error::The DEPLOY_SSH_KEY secret is not set"
+            exit 1
+          fi
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+          rsync -rltpz --delete --chmod=D755,F644 \
+            -e "ssh -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=deploy/known_hosts" \
+            out/ "$DEPLOY_TARGET:/"
+      - name: Remove the deploy key
+        if: always()
+        run: rm -f "$HOME/.ssh/deploy_key"

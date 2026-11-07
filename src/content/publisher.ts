@@ -5,8 +5,9 @@ export const PUBLISHER = {
   email: "TODO(éditeur)",
 } as const;
 
-// Copy the host details from Hostinger's own legal page.
+// The VPS (72.61.199.143) is a Hostinger server. Details as published on
+// Hostinger's legal page: check them there before the first release.
 export const HOST = {
-  name: "TODO(hébergeur)",
-  address: "TODO(hébergeur)",
+  name: "Hostinger International Ltd.",
+  address: "61 Lordou Vironos Street, 6023 Larnaca, Cyprus",
 } as const;

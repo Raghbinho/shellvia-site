@@ -54,9 +54,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^6.2.1
         version: 6.2.1(vite@8.3.6(@types/node@26.6.6))
-      basic-ftp:
-        specifier: ^6.2.6
-        version: 6.2.6
       eslint:
         specifier: ^10.14.0
         version: 10.14.0
@@ -988,10 +985,6 @@ packages:
     resolution: {integrity: sha512-GNk8KX52CHqeNKGk8+7tZnQab/2k1t/BgrUHPKNdijzpEhF1saPQZHVKb6m5loSAxB39gyrTYw34Qf9CQ3u1qQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  basic-ftp@6.2.6:
-    resolution: {integrity: sha512-0EjZCaodOz6yiokv2JA1VyKGNdGxULZ+GGlPgG9tm4d+T/bHtX1hUch8CumDneBfpIbiSdn7TaCGwpM+gwsOlw==}
-    engines: {node: '>=10.0.0'}
 
   boxen@7.0.0:
     resolution: {integrity: sha512-j//dBVuyacJbvW+tvZ9HuH03fZ46QcaKvvhZickZqtB271DxJ7SNRSNxrV/dZX0085m7hISRZWbzWlJvx/rHSg==}
@@ -3419,8 +3412,6 @@ snapshots:
   balanced-match@4.0.4: {}
 
   baseline-browser-mapping@2.11.35: {}
-
-  basic-ftp@6.2.6: {}
 
   boxen@7.0.0:
     dependencies:

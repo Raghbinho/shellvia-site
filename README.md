@@ -17,13 +17,12 @@ pnpm build:prod   # build + refus des TODO( restants (voir « Éditeur »)
 
 | | Test local (`pnpm dev`) | Aperçu (`pnpm preview`) | Production |
 |---|---|---|---|
-| Réglages | `.env.development` (versionné) | aucun | secrets GitHub, ou `.env.deploy.local` |
+| Réglages | `.env.development` (versionné) | aucun | secret et variable GitHub |
 | Version proposée | fausse (`src/lib/fixtures/release.json`) | vraie dernière version | vraie dernière version |
 | Statistiques Umami | non | non | oui si `UMAMI_WEBSITE_ID` est défini |
 
 Pour tester `pnpm dev` avec la vraie version publiée, commenter la ligne de
-`.env.development`. Aucun fichier `.env*` ne contient de secret versionné :
-`.env.deploy.local` est ignoré par git.
+`.env.development`. Aucun secret n'est dans le dépôt.
 
 ## Tests
 
@@ -44,59 +43,47 @@ workflow de déploiement échouera donc volontairement à cette étape.
 
 ## Déploiement
 
-Le workflow `.github/workflows/deploy.yml` s'exécute à chaque push sur `main`
-(ou à la main) : mêmes contrôles que la CI, `pnpm build:prod`, puis envoi de
-`out/` en FTPS. Les actions tierces sont épinglées par SHA de commit.
+Le site est servi par nginx sur le VPS Hostinger `72.61.199.143`, dans
+`/var/www/shellvia`. Le workflow `.github/workflows/deploy.yml` s'exécute à
+chaque push sur `main` (ou à la main) : mêmes contrôles que la CI,
+`pnpm build:prod`, puis envoi de `out/` par rsync en SSH. Les actions tierces
+sont épinglées par SHA de commit.
 
-Secrets et variable à définir une fois (par vous, avec `gh`, sans les écrire
-dans le dépôt) :
+- Secret `DEPLOY_SSH_KEY` : clé privée réservée au déploiement. Sur le serveur,
+  elle ne permet qu'une chose : écrire avec rsync dans `/var/www/shellvia`
+  (utilisateur `deploy`, commande imposée `rrsync -wo`).
+- Variable `UMAMI_WEBSITE_ID` : identifiant Umami Cloud, public (il apparaît
+  dans chaque page).
+- La clé d'hôte du VPS est épinglée dans `deploy/known_hosts` : si le serveur
+  est réinstallé, la remplacer (`ssh-keyscan -t ed25519 72.61.199.143`) après
+  avoir comparé l'empreinte avec celle affichée sur le serveur.
+
+Lancer un déploiement sans push (publie `main` tel qu'il est sur GitHub) :
 
 ```bash
-gh secret set FTP_HOST         # nom d'hôte correspondant au certificat TLS de Hostinger
-gh secret set FTP_USER
-gh secret set FTP_PASSWORD
-gh secret set FTP_DIR            # doit finir par / ex. /domains/shellvia.com/public_html/
-gh variable set UMAMI_WEBSITE_ID # identifiant Umami ; vide = pas de statistiques
+pnpm run deploy
 ```
 
-Déploiement depuis le poste : copier `.env.deploy.example` en
-`.env.deploy.local` (ignoré par git), le remplir, puis :
+## Mise en place du VPS (une fois)
 
-```bash
-pnpm deploy:ftp   # build:prod avec ces réglages, puis envoi FTPS de out/
-```
+1. **DNS** (Hostinger, Domaines, DNS) : pour shellvia.com, shellvia.fr et
+   shellvia.app, un enregistrement A `@` et un A `www` vers `72.61.199.143`
+   (supprimer les anciens A/AAAA et CNAME `www`).
+2. **Clé de déploiement**, sur votre poste :
+   `ssh-keygen -t ed25519 -N '' -C shellvia-deploy -f $HOME/.ssh/shellvia_deploy`,
+   puis `Get-Content $HOME/.ssh/shellvia_deploy -Raw | gh secret set DEPLOY_SSH_KEY -R Raghbinho/shellvia-site` (PowerShell).
+3. **Serveur** : copier le dossier `deploy/` et la clé publique, puis lancer le
+   script (relisez-le avant) :
 
-Une variable déjà définie dans le terminal l'emporte sur le fichier.
+   ```bash
+   scp -r deploy <vous>@72.61.199.143:/tmp/shellvia-deploy
+   scp $HOME/.ssh/shellvia_deploy.pub <vous>@72.61.199.143:/tmp/shellvia-deploy/
+   ssh <vous>@72.61.199.143
+   sudo bash /tmp/shellvia-deploy/setup-vps.sh /tmp/shellvia-deploy/shellvia_deploy.pub <e-mail>
+   ```
 
-`FTP_DIR` doit impérativement se terminer par `/` (exigence de l'action FTP ;
-le workflow et le script refusent sinon). Valeur : `/` quand le compte FTP est
-limité au dossier du site (cas recommandé ci-dessous) ; sinon
-`/domains/shellvia.com/public_html/`.
-
-`FTP_HOST` doit être le nom d'hôte qui correspond au certificat TLS de Hostinger :
-le workflow active `security: strict` (vérification du certificat), donc une
-adresse IP ou un autre nom fait échouer l'envoi.
-
-Un `pnpm deploy:ftp` local sans `NEXT_PUBLIC_UMAMI_WEBSITE_ID` publie des pages
-sans statistiques d'audience (le script prévient) : renseignez-la dans
-`.env.deploy.local`.
-
-Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
-`public/.htaccess` est forcé en fins de ligne LF (`.gitattributes`).
-
-## Hostinger : domaines et SSL
-
-1. Héberger les trois domaines sur le même hébergement : ajouter chaque domaine
-   (hPanel, Sites web, Ajouter un site web) en pointant son dossier racine vers
-   le même répertoire (recommandé : `public/.htaccess` redirige alors shellvia.fr
-   vers `https://shellvia.com/fr/…` et shellvia.app vers shellvia.com). Éviter la
-   redirection 301 de hPanel, qui perdrait la correspondance `/fr/` de
-   shellvia.fr ; si vous l'utilisez malgré tout, shellvia.fr doit pointer vers
-   `https://shellvia.com/fr/`.
-2. Pointer les DNS de chaque domaine vers l'hébergement (serveurs de noms
-   Hostinger ou enregistrements A/AAAA indiqués dans hPanel).
-3. Activer le SSL gratuit (hPanel, Sécurité, SSL) pour chaque domaine. Ne pas
-   activer « Forcer HTTPS » dans hPanel : `.htaccess` force déjà HTTPS, et ce
-   réglage peut être écrasé par les déploiements.
-4. Créer un compte FTP dédié limité au dossier du site, et utiliser son
-   identifiant comme `FTP_USER`.
+   Il installe certbot et rsync, crée l'utilisateur `deploy` et
+   `/var/www/shellvia`, obtient un certificat Let's Encrypt pour les six noms
+   (renouvelé automatiquement), puis ajoute le site nginx sans toucher aux
+   autres. Il peut être relancé sans risque.
+4. Comparer l'empreinte affichée à la fin avec `ssh-keygen -lf deploy/known_hosts`.

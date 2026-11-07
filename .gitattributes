@@ -1,2 +1,2 @@
 * text=auto
-public/.htaccess text eol=lf
+deploy/** text eol=lf
