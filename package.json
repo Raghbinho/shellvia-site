@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "e2e": "playwright test",
-    "deploy:ftp": "pnpm build:prod && node scripts/deploy-ftp.mjs out",
+    "deploy:ftp": "node scripts/deploy-ftp.mjs out",
+    "preview": "pnpm build && serve out -l 4000",
     "check:links": "node scripts/check-links.mjs out"
   },
   "dependencies": {

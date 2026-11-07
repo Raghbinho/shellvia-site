@@ -9,8 +9,21 @@ Les maquettes de référence sont dans `design/`.
 pnpm install
 pnpm dev          # http://localhost:3000
 pnpm build        # export statique dans out/
+pnpm preview      # build puis http://localhost:4000 (comme en production)
 pnpm build:prod   # build + refus des TODO( restants (voir « Éditeur »)
 ```
+
+## Environnements
+
+| | Test local (`pnpm dev`) | Aperçu (`pnpm preview`) | Production |
+|---|---|---|---|
+| Réglages | `.env.development` (versionné) | aucun | secrets GitHub, ou `.env.deploy.local` |
+| Version proposée | fausse (`src/lib/fixtures/release.json`) | vraie dernière version | vraie dernière version |
+| Statistiques Umami | non | non | oui si `UMAMI_WEBSITE_ID` est défini |
+
+Pour tester `pnpm dev` avec la vraie version publiée, commenter la ligne de
+`.env.development`. Aucun fichier `.env*` ne contient de secret versionné :
+`.env.deploy.local` est ignoré par git.
 
 ## Tests
 
@@ -46,12 +59,14 @@ gh secret set FTP_DIR            # doit finir par / ex. /domains/shellvia.com/pu
 gh variable set UMAMI_WEBSITE_ID # identifiant Umami ; vide = pas de statistiques
 ```
 
-Déploiement depuis le poste (mêmes variables d'environnement `FTP_HOST`,
-`FTP_USER`, `FTP_PASSWORD`, `FTP_DIR`) :
+Déploiement depuis le poste : copier `.env.deploy.example` en
+`.env.deploy.local` (ignoré par git), le remplir, puis :
 
 ```bash
-pnpm deploy:ftp
+pnpm deploy:ftp   # build:prod avec ces réglages, puis envoi FTPS de out/
 ```
+
+Une variable déjà définie dans le terminal l'emporte sur le fichier.
 
 `FTP_DIR` doit impérativement se terminer par `/` (exigence de l'action FTP ;
 le workflow et le script refusent sinon). Valeur : `/` quand le compte FTP est
@@ -63,7 +78,8 @@ le workflow active `security: strict` (vérification du certificat), donc une
 adresse IP ou un autre nom fait échouer l'envoi.
 
 Un `pnpm deploy:ftp` local sans `NEXT_PUBLIC_UMAMI_WEBSITE_ID` publie des pages
-sans statistiques d'audience : définissez la variable avant de lancer la commande.
+sans statistiques d'audience (le script prévient) : renseignez-la dans
+`.env.deploy.local`.
 
 Le script n'affiche jamais les valeurs, seulement le nom d'une variable absente.
 `public/.htaccess` est forcé en fins de ligne LF (`.gitattributes`).

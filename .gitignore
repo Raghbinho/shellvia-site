@@ -4,7 +4,8 @@ out
 next-env.d.ts
 *.tsbuildinfo
 .env*
-!.env.example
+!.env.development
+!.env.deploy.example
 coverage
 test-results
 playwright-report
