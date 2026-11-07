@@ -13,8 +13,12 @@ export function LegalNotice({ lang }: { lang: Lang }) {
       <dl>
         <dt>{t.publisherName}</dt>
         <dd>{PUBLISHER.name}</dd>
-        <dt>{t.publisherAddress}</dt>
-        <dd>{PUBLISHER.address}</dd>
+        {PUBLISHER.address && (
+          <>
+            <dt>{t.publisherAddress}</dt>
+            <dd>{PUBLISHER.address}</dd>
+          </>
+        )}
       </dl>
       <h2>{t.contactTitle}</h2>
       <p>
