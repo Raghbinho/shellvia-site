@@ -52,4 +52,21 @@ describe("DownloadButton", () => {
     expect(link).toHaveAttribute("href", links.files.appimage);
     expect(link).toHaveTextContent("Download");
   });
+
+  it("tags the hero link with the Umami download event of the visitor's system", async () => {
+    stubUserAgent(MAC_UA);
+    render(<DownloadButton lang="en" links={links} variant="hero" />);
+    const link = await screen.findByRole("link", { name: "Download for macOS" });
+    expect(link).toHaveAttribute("data-umami-event", "download");
+    expect(link).toHaveAttribute("data-umami-event-os", "macos");
+    expect(link).toHaveAttribute("data-umami-event-format", "dmg");
+  });
+
+  it("tags a card link with its own system", () => {
+    stubUserAgent(MAC_UA);
+    render(<DownloadButton lang="en" links={links} variant="card" os="linux" />);
+    const link = screen.getByRole("link", { name: "Download for Linux" });
+    expect(link).toHaveAttribute("data-umami-event-os", "linux");
+    expect(link).toHaveAttribute("data-umami-event-format", "appimage");
+  });
 });

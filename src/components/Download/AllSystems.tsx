@@ -2,6 +2,7 @@
 
 import { Download } from "lucide-react";
 import { getDict, type Lang } from "@/i18n";
+import { downloadEvent } from "@/lib/analytics";
 import type { Os } from "@/lib/platform";
 import { isShown, linkFor, type Format, type ReleaseLinks } from "@/lib/releases";
 import styles from "./Download.module.css";
@@ -69,6 +70,7 @@ export function AllSystems({ lang, links }: { lang: Lang; links: ReleaseLinks })
                         href={linkFor(live, row.format)}
                         title={label}
                         aria-label={label}
+                        {...downloadEvent(os, row.format)}
                       >
                         <Download size="1.1em" aria-hidden="true" />
                       </a>

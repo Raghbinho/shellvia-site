@@ -2,6 +2,7 @@
 
 import { Download, Monitor } from "lucide-react";
 import { getDict, type Lang } from "@/i18n";
+import { downloadEvent } from "@/lib/analytics";
 import { RELEASE_NOTES_URL } from "@/lib/constants";
 import { recommendedFormat } from "@/lib/platform";
 import { isStableVersion, linkFor, type ReleaseLinks } from "@/lib/releases";
@@ -16,6 +17,7 @@ export function DetectedBlock({ lang, links }: { lang: Lang; links: ReleaseLinks
   const live = useReleaseLinks(links);
   const { os, detected } = usePlatform();
   const osName = dict.home.osNames[os];
+  const format = recommendedFormat(os);
   return (
     <div className={styles.main}>
       <div>
@@ -33,7 +35,11 @@ export function DetectedBlock({ lang, links }: { lang: Lang; links: ReleaseLinks
         </div>
       </div>
       <div className={styles.side}>
-        <a className={`${buttons.btn} ${buttons.pri}`} href={linkFor(live, recommendedFormat(os))}>
+        <a
+          className={`${buttons.btn} ${buttons.pri}`}
+          href={linkFor(live, format)}
+          {...downloadEvent(os, format)}
+        >
           <Download size="1.1em" aria-hidden="true" />
           {t.button}
         </a>

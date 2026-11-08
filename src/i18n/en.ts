@@ -254,7 +254,7 @@ export const en: Dict = {
     siteNoAccount: "There is no account to create and the site sets no cookie.",
     measureTitle: "Audience measurement",
     measureText:
-      "We use Umami Cloud to count page views, referrers, countries and device types. This measurement uses no cookie and no personal identifier, and it does not follow you from one site to another.",
+      "We use Umami Cloud to count page views, clicks on the download buttons (chosen system and format), referrers, countries and device types. This measurement uses no cookie and no personal identifier, and it does not follow you from one site to another.",
     downloadsTitle: "Downloads",
     downloadsText:
       "Installers are served by GitHub. When you download one, GitHub receives your request under its own privacy policy. The home and download pages also ask GitHub (api.github.com) for the latest version number when they load, so GitHub receives your IP address, like for any web request.",

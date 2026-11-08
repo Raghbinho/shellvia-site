@@ -2,6 +2,7 @@
 
 import { Download } from "lucide-react";
 import { getDict, type Lang } from "@/i18n";
+import { downloadEvent } from "@/lib/analytics";
 import { linkFor, type ReleaseLinks } from "@/lib/releases";
 import { recommendedFormat, type Os } from "@/lib/platform";
 import buttons from "@/styles/buttons.module.css";
@@ -24,11 +25,13 @@ export function DownloadButton({ lang, links, variant, os }: Props) {
   const label = t.hero.download.replace("{os}", t.home.osNames[target]);
   const isCard = variant === "card";
   const primary = !isCard || (target === platform.os && platform.detected);
+  const format = recommendedFormat(target);
   return (
     <a
       className={`${buttons.btn} ${primary ? buttons.pri : buttons.glass}`}
-      href={linkFor(live, recommendedFormat(target))}
+      href={linkFor(live, format)}
       aria-label={isCard ? label : undefined}
+      {...downloadEvent(target, format)}
     >
       <Download size="1.1em" aria-hidden="true" />
       {isCard ? t.home.download.button : label}

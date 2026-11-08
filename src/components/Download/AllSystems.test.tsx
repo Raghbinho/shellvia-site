@@ -42,4 +42,13 @@ describe("AllSystems", () => {
     expect(linux).not.toBeNull();
     expect(within(linux as HTMLElement).getAllByRole("link")).toHaveLength(2);
   });
+
+  it("tags each row with the Umami download event of its system and format", () => {
+    render(<AllSystems lang="en" links={links} />);
+    const deb = rowLink(".deb");
+    expect(deb).toHaveAttribute("data-umami-event", "download");
+    expect(deb).toHaveAttribute("data-umami-event-os", "linux");
+    expect(deb).toHaveAttribute("data-umami-event-format", "deb");
+    expect(rowLink(".msi")).toHaveAttribute("data-umami-event-os", "windows");
+  });
 });
